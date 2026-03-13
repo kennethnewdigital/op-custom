@@ -1,0 +1,208 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Premium golfutrustning & custom putters i Sverige. Scotty Cameron, TaylorMade & Titleist." } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/", label: "Hem" },
+  { href: "/shop", label: "Shop" },
+  { href: "/custom-putters", label: "Custom Putters" },
+  { href: "/titleist-logobollar", label: "Titleist Logobollar" },
+  { href: "/om-oss", label: "Om Oss" },
+  { href: "/kontakt", label: "Kontakt" },
+];
+
+const categories = [
+  { href: "/custom-putters", label: "Custom Putters" },
+  { href: "/shop", label: "Putter Fitting" },
+  { href: "/shop", label: "Premium Skaft" },
+  { href: "/shop", label: "Golfklubbor" },
+  { href: "/shop", label: "Tillbehor" },
+  { href: "/titleist-logobollar", label: "Titleist Logobollar" },
+];
+
+const companyLinks = [
+  { href: "/om-oss", label: "Om Oss" },
+  { href: "/kontakt", label: "Kontakt" },
+  { href: "/shop", label: "Shop" },
+];
+---
+
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} | OP Custom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      @import '../styles/global.css';
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-brand-grey-200" id="header">
+      <div class="max-w-[1430px] mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 shrink-0">
+          <span class="text-2xl font-black tracking-tight uppercase">OP</span>
+          <span class="text-sm font-semibold tracking-widest uppercase text-brand-grey-500">Custom</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "text-sm font-semibold tracking-wide uppercase transition-colors hover:text-brand-red",
+                currentPath === link.href ? "text-brand-red" : "text-brand-black",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menu-toggle"
+          class="lg:hidden flex flex-col gap-1.5 p-2"
+          aria-label="Meny"
+        >
+          <span class="block w-6 h-0.5 bg-brand-black transition-transform" id="bar1"></span>
+          <span class="block w-6 h-0.5 bg-brand-black transition-opacity" id="bar2"></span>
+          <span class="block w-6 h-0.5 bg-brand-black transition-transform" id="bar3"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Nav -->
+      <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-brand-grey-200">
+        <nav class="flex flex-col py-4 px-6">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "py-3 text-sm font-semibold tracking-wide uppercase border-b border-brand-grey-100 transition-colors hover:text-brand-red",
+                currentPath === link.href ? "text-brand-red" : "text-brand-black",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 pt-20">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-grey-100 border-t border-brand-grey-200">
+      <!-- Main Footer -->
+      <div class="max-w-[1430px] mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <!-- Brand -->
+          <div>
+            <a href="/" class="flex items-center gap-2 mb-6">
+              <span class="text-2xl font-black tracking-tight uppercase">OP</span>
+              <span class="text-sm font-semibold tracking-widest uppercase text-brand-grey-500">Custom</span>
+            </a>
+            <p class="text-sm text-brand-grey-500 leading-relaxed">
+              Premium golfutrustning och custom putters. Vi specialiserar oss på Scotty Cameron, TaylorMade och Titleist.
+            </p>
+          </div>
+
+          <!-- Kategorier -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider mb-6 pb-3 border-b border-brand-grey-300">Kategorier</h3>
+            <ul class="space-y-3">
+              {categories.map((link) => (
+                <li>
+                  <a href={link.href} class="text-sm text-brand-grey-600 hover:text-brand-red transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Foretaget -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider mb-6 pb-3 border-b border-brand-grey-300">Foretaget</h3>
+            <ul class="space-y-3">
+              {companyLinks.map((link) => (
+                <li>
+                  <a href={link.href} class="text-sm text-brand-grey-600 hover:text-brand-red transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Kontakt -->
+          <div>
+            <h3 class="text-sm font-bold uppercase tracking-wider mb-6 pb-3 border-b border-brand-grey-300">Kontakt</h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="mailto:hello@op-custom.com" class="text-sm text-brand-grey-600 hover:text-brand-red transition-colors">
+                  hello@op-custom.com
+                </a>
+              </li>
+              <li class="text-sm text-brand-grey-600">Sverige</li>
+            </ul>
+            <div class="flex gap-4 mt-6">
+              <a href="#" class="text-brand-grey-400 hover:text-brand-red transition-colors" aria-label="Facebook">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="text-brand-grey-400 hover:text-brand-red transition-colors" aria-label="Instagram">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="#" class="text-brand-grey-400 hover:text-brand-red transition-colors" aria-label="YouTube">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub Footer -->
+      <div class="border-t border-brand-grey-300 bg-brand-grey-200/50">
+        <div class="max-w-[1430px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p class="text-xs text-brand-grey-500">&copy; {new Date().getFullYear()} OnePutt Custom. Alla rattigheter forbehallna.</p>
+          <p class="text-xs text-brand-grey-400">Premium Golf Equipment &mdash; Sverige</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("mobile-menu");
+      const bar1 = document.getElementById("bar1");
+      const bar2 = document.getElementById("bar2");
+      const bar3 = document.getElementById("bar3");
+      let open = false;
+
+      toggle?.addEventListener("click", () => {
+        open = !open;
+        menu?.classList.toggle("hidden", !open);
+        bar1?.classList.toggle("translate-y-[4px]", open);
+        bar1?.classList.toggle("rotate-45", open);
+        bar2?.classList.toggle("opacity-0", open);
+        bar3?.classList.toggle("-translate-y-[4px]", open);
+        bar3?.classList.toggle("-rotate-45", open);
+      });
+    </script>
+  </body>
+</html>

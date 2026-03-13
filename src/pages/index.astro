@@ -1,17 +1,190 @@
 ---
+import Layout from "../layouts/Layout.astro";
 
+const featuredProducts = [
+  {
+    name: "Scotty Cameron MOTO LTD Newport 2",
+    price: "9 999 kr",
+    originalPrice: "12 999 kr",
+    badge: "REA",
+    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+  },
+  {
+    name: "TaylorMade Qi10 Fairway Wood",
+    price: "3 399 kr",
+    originalPrice: "5 999 kr",
+    badge: "REA",
+    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=600&h=600&fit=crop",
+  },
+  {
+    name: "Scotty Cameron Jet Set Black",
+    price: "8 999 kr",
+    originalPrice: "12 999 kr",
+    badge: "REA",
+    image: "https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?w=600&h=600&fit=crop",
+  },
+  {
+    name: "TaylorMade Qi10 Max Designer Series",
+    price: "5 399 kr",
+    originalPrice: "8 999 kr",
+    badge: "REA",
+    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+  },
+];
+
+const categories = [
+  { name: "Custom Putters", href: "/custom-putters", desc: "Unika finishar & personlig design" },
+  { name: "Titleist Logobollar", href: "/titleist-logobollar", desc: "Eget tryck & logotyp" },
+  { name: "Putter Fitting", href: "/shop", desc: "Professionell anpassning" },
+  { name: "Golfklubbor", href: "/shop", desc: "Premium klubbor" },
+  { name: "Premium Skaft", href: "/shop", desc: "Topprestanda skaft" },
+  { name: "Tillbehor", href: "/shop", desc: "Allt for din golf" },
+  { name: "Golftraning", href: "/shop", desc: "Forbattra ditt spel" },
+  { name: "Scotty Trade-In", href: "/shop", desc: "Byt in din gamla putter" },
+  { name: "Shop", href: "/shop", desc: "Se alla produkter" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Hem" description="OP Custom - Premium golfutrustning och custom putters i Sverige. Scotty Cameron, TaylorMade och Titleist.">
+
+  <!-- Hero Section -->
+  <section class="relative bg-brand-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/90 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-40"></div>
+    <div class="relative z-20 max-w-[1430px] mx-auto px-6 py-32 md:py-44 lg:py-56">
+      <div class="max-w-2xl">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Premium Golf Equipment</p>
+        <h1 class="text-4xl md:text-5xl lg:text-7xl font-black uppercase leading-[0.95] mb-6">
+          Gor din golf<br/>
+          <span class="text-brand-red">personlig</span>
+        </h1>
+        <p class="text-lg md:text-xl text-white/70 mb-10 max-w-lg leading-relaxed">
+          Custom putters, premium utrustning och Titleist logobollar. Upplev skillnaden med utrustning anpassad efter dig.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/shop" class="inline-flex items-center px-8 py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
+            Utforska Shop
+          </a>
+          <a href="/custom-putters" class="inline-flex items-center px-8 py-4 border-2 border-white text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-white hover:text-brand-black transition-colors">
+            Custom Putters
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Kategorier</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Vad letar du efter?</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {categories.map((cat) => (
+          <a
+            href={cat.href}
+            class="group relative bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-8 hover:border-brand-red hover:shadow-lg transition-all duration-300"
+          >
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-lg font-bold uppercase tracking-wide group-hover:text-brand-red transition-colors">{cat.name}</h3>
+                <p class="text-sm text-brand-grey-500 mt-1">{cat.desc}</p>
+              </div>
+              <svg class="w-5 h-5 text-brand-grey-300 group-hover:text-brand-red group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="py-20 md:py-28 bg-brand-grey-50">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Kampanj</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Utvalda Produkter</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featuredProducts.map((product) => (
+          <a href="/shop" class="group bg-white rounded-xl overflow-hidden border border-brand-grey-200 hover:shadow-xl transition-all duration-300">
+            <div class="relative aspect-square overflow-hidden bg-brand-grey-100">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              {product.badge && (
+                <span class="absolute top-3 left-3 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  {product.badge}
+                </span>
+              )}
+            </div>
+            <div class="p-5">
+              <h3 class="text-sm font-bold uppercase tracking-wide leading-snug mb-3">{product.name}</h3>
+              <div class="flex items-center gap-3">
+                <span class="text-brand-red font-bold text-lg">{product.price}</span>
+                {product.originalPrice && (
+                  <span class="text-brand-grey-400 text-sm line-through">{product.originalPrice}</span>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <a href="/shop" class="inline-flex items-center px-8 py-4 bg-brand-black text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-grey-800 transition-colors">
+          Se alla produkter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="relative bg-brand-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-red/20 to-transparent"></div>
+    <div class="relative max-w-[1430px] mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Custom Finishing</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase mb-6">Skapa din drom-putter</h2>
+        <p class="text-white/60 text-lg mb-10 leading-relaxed">
+          Valj mellan Black Oxide, Copper, Raw och Painted finish. Vi ger din putter ett unikt utseende.
+        </p>
+        <a href="/custom-putters" class="inline-flex items-center px-8 py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
+          Begir offert
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter / Contact -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="max-w-xl mx-auto text-center">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Nyhetsbrev</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase mb-4">Hall dig uppdaterad</h2>
+        <p class="text-brand-grey-500 mb-10">Fa nyheter om produkter, erbjudanden och custom-projekt direkt i din inkorg.</p>
+        <form class="flex flex-col sm:flex-row gap-3" name="newsletter">
+          <input
+            type="email"
+            name="email"
+            placeholder="Din e-postadress"
+            required
+            class="flex-1 px-5 py-4 border border-brand-grey-300 rounded-full text-sm focus:outline-none focus:border-brand-red transition-colors"
+          />
+          <button
+            type="submit"
+            class="px-8 py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors"
+          >
+            Prenumerera
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</Layout>

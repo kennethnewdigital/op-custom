@@ -1,0 +1,214 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const ballModels = [
+  {
+    name: "Pro V1",
+    desc: "Den mest spelade bollen pa touren. Exceptionell distans, konsekvent flykt och mjuk kansla.",
+  },
+  {
+    name: "Pro V1x",
+    desc: "Hogre flykt och lite fastare kansla. Utmarkt for spelare som soker extra spin runt greenen.",
+  },
+  {
+    name: "AVX",
+    desc: "Lagre flykt och mjukare kansla. Perfekt for spelare som vill ha mindre spin fran tee.",
+  },
+  {
+    name: "Tour Speed",
+    desc: "Utmarkt allroundboll med bra prestanda i alla kategorier till ett lagre pris.",
+  },
+  {
+    name: "Velocity",
+    desc: "Maximal distans och rakare bollflykt. Bra val for spelare som vill ha mer langd.",
+  },
+  {
+    name: "TruFeel",
+    desc: "Mjukaste Titleist-bollen. Bra kansla och distans for fritidsgolfaren.",
+  },
+];
+
+const packages = [
+  {
+    name: "Startpaket",
+    balls: "24 bollar (2 dussin)",
+    desc: "Perfekt for att prova pa logobollar.",
+  },
+  {
+    name: "Vardepaket",
+    balls: "60 + 6 bollar gratis",
+    desc: "Vart mest populara paket. Bast varde for pengarna.",
+    popular: true,
+  },
+  {
+    name: "Foretagspaket",
+    balls: "120 + 12 bollar gratis",
+    desc: "For storresatsningar, turneringar och kundgavor.",
+  },
+];
+---
+
+<Layout title="Titleist Logobollar" description="Bestall Titleist golfbollar med egen logotyp. Pro V1, Pro V1x, AVX och fler modeller. Perfekt for foretag och evenemang.">
+
+  <!-- Hero -->
+  <section class="relative bg-brand-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-30"></div>
+    <div class="relative z-20 max-w-[1430px] mx-auto px-6 py-28 md:py-40">
+      <div class="max-w-2xl">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Titleist Logobollar</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[0.95] mb-6">
+          Din logotyp pa<br/>varldens <span class="text-brand-red">basta</span> boll
+        </h1>
+        <p class="text-lg text-white/70 max-w-lg leading-relaxed">
+          Bestall Titleist golfbollar med eget tryck. Perfekt for foretag, turneringar, evenemang eller som en personlig touch pa din utrustning.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ball Models -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Bollmodeller</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Valj din modell</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {ballModels.map((ball) => (
+          <div class="group bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-8 hover:border-brand-red transition-all duration-300">
+            <h3 class="text-lg font-black uppercase tracking-wide mb-3 group-hover:text-brand-red transition-colors">{ball.name}</h3>
+            <p class="text-sm text-brand-grey-500 leading-relaxed">{ball.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section class="py-20 md:py-28 bg-brand-grey-50">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Paket</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Valj storlek</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {packages.map((pkg) => (
+          <div class:list={[
+            "relative bg-white border rounded-xl p-8 text-center transition-all duration-300",
+            pkg.popular ? "border-brand-red shadow-lg scale-105" : "border-brand-grey-200 hover:border-brand-red",
+          ]}>
+            {pkg.popular && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-red text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                Popularast
+              </span>
+            )}
+            <h3 class="text-lg font-black uppercase tracking-wide mb-2">{pkg.name}</h3>
+            <p class="text-brand-red font-bold text-sm mb-2">{pkg.balls}</p>
+            <p class="text-sm text-brand-grey-500">{pkg.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Form -->
+  <section id="bestall" class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Offertforfragan</p>
+          <h2 class="text-3xl md:text-4xl font-black uppercase">Bestall Logobollar</h2>
+          <p class="text-brand-grey-500 mt-4">Fyll i formularet sa aterkommer vi med offert och leveranstid.</p>
+        </div>
+
+        <form class="space-y-6" name="titleist-order" method="POST" enctype="multipart/form-data">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="fname" class="block text-xs font-bold uppercase tracking-wider mb-2">Fornamn *</label>
+              <input type="text" id="fname" name="firstname" required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="Fornamn" />
+            </div>
+            <div>
+              <label for="lname" class="block text-xs font-bold uppercase tracking-wider mb-2">Efternamn *</label>
+              <input type="text" id="lname" name="lastname" required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="Efternamn" />
+            </div>
+          </div>
+
+          <div>
+            <label for="company" class="block text-xs font-bold uppercase tracking-wider mb-2">Foretag</label>
+            <input type="text" id="company" name="company"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+              placeholder="Foretagsnamn (valfritt)" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="phone" class="block text-xs font-bold uppercase tracking-wider mb-2">Telefon</label>
+              <input type="tel" id="phone" name="phone"
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="070-XXX XX XX" />
+            </div>
+            <div>
+              <label for="email2" class="block text-xs font-bold uppercase tracking-wider mb-2">E-post *</label>
+              <input type="email" id="email2" name="email" required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="din@epost.se" />
+            </div>
+          </div>
+
+          <div>
+            <label for="package" class="block text-xs font-bold uppercase tracking-wider mb-2">Jag ar intresserad av *</label>
+            <select id="package" name="package" required
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white">
+              <option value="">-- Valj paket --</option>
+              <option value="start-24">Startpaket (24 bollar)</option>
+              <option value="value-60">Vardepaket (60 + 6 bollar)</option>
+              <option value="corporate-120">Foretagspaket (120 + 12 bollar)</option>
+              <option value="custom">Annat antal</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="ball-model" class="block text-xs font-bold uppercase tracking-wider mb-2">Bollmodell</label>
+            <select id="ball-model" name="ball_model"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white">
+              <option value="">-- Valj modell --</option>
+              <option value="prov1">Pro V1</option>
+              <option value="prov1x">Pro V1x</option>
+              <option value="avx">AVX</option>
+              <option value="tour-speed">Tour Speed</option>
+              <option value="velocity">Velocity</option>
+              <option value="trufeel">TruFeel</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="logo-file" class="block text-xs font-bold uppercase tracking-wider mb-2">Ladda upp logotyp</label>
+            <input type="file" id="logo-file" name="logo"
+              accept="image/*,.pdf,.ai,.eps"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-brand-grey-100 file:text-brand-black hover:file:bg-brand-grey-200" />
+            <p class="text-xs text-brand-grey-400 mt-2">Accepterade format: JPG, PNG, PDF, AI, EPS</p>
+          </div>
+
+          <div>
+            <label for="msg" class="block text-xs font-bold uppercase tracking-wider mb-2">Meddelande</label>
+            <textarea id="msg" name="message" rows="4"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors resize-y"
+              placeholder="Eventuella onskemal eller fragor..."
+            ></textarea>
+          </div>
+
+          <button type="submit"
+            class="w-full py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
+            Skicka bestallning
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</Layout>

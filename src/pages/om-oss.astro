@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const values = [
+  {
+    title: "Kvalitet",
+    desc: "Vi arbetar bara med premium-utrustning fran varldens ledande tillverkare. Varje produkt valjs noggrant.",
+  },
+  {
+    title: "Hantverk",
+    desc: "Vara custom-finishar gors for hand med precision och omsorg. Varje putter ar ett unikt konstverk.",
+  },
+  {
+    title: "Passion",
+    desc: "Golf ar mer an en sport for oss — det ar en livsstil. Vi delar din passion for spelet.",
+  },
+  {
+    title: "Service",
+    desc: "Personlig radgivning och snabb service. Vi finns har for att hjalpa dig hitta ratt utrustning.",
+  },
+];
+---
+
+<Layout title="Om Oss" description="OP Custom - Vi brinner for premium golf. Las mer om oss och var passion for custom putters och golfutrustning.">
+
+  <!-- Hero -->
+  <section class="relative bg-brand-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-20"></div>
+    <div class="relative z-20 max-w-[1430px] mx-auto px-6 py-28 md:py-40">
+      <div class="max-w-2xl">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Om Oss</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[0.95] mb-6">
+          Passion for<br/><span class="text-brand-red">premium</span> golf
+        </h1>
+        <p class="text-lg text-white/70 max-w-lg leading-relaxed">
+          OP Custom ar mer an en golfbutik — vi ar hantverkare, entusiaster och radgivare som hjalper dig ta ditt spel till nasta niva.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 items-start">
+          <div>
+            <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Var historia</p>
+            <h2 class="text-3xl md:text-4xl font-black uppercase">One-Putt Custom</h2>
+          </div>
+          <div class="space-y-5 text-brand-grey-600 leading-relaxed">
+            <p>
+              OP Custom grundades av golfare, for golfare. Vi tror pa att ratt utrustning gor skillnad — inte bara for ditt spel, utan for hela upplevelsen pa banan.
+            </p>
+            <p>
+              Vi specialiserar oss pa custom putters med unika finishar, premium golfutrustning fran marken som Scotty Cameron och TaylorMade, samt Titleist logobollar for foretag och privatpersoner.
+            </p>
+            <p>
+              Varje putter vi arbetar med behandlas med storsta omsorg. Fran Black Oxide till handmalad finish — vi ser till att resultatet overtraffar dina forvantningar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20 md:py-28 bg-brand-grey-50">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Vart Lofte</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Det vi star for</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((value) => (
+          <div class="bg-white border border-brand-grey-200 rounded-xl p-8 text-center hover:border-brand-red transition-all duration-300">
+            <h3 class="text-lg font-black uppercase tracking-wide mb-3">{value.title}</h3>
+            <p class="text-sm text-brand-grey-500 leading-relaxed">{value.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Vara Marken</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Vi jobbar med de basta</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {["Scotty Cameron", "TaylorMade", "Titleist", "Diamana"].map((brand) => (
+          <div class="bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-8 flex items-center justify-center h-28">
+            <span class="text-lg font-black uppercase tracking-wider text-brand-grey-400">{brand}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-brand-black text-white">
+    <div class="max-w-[1430px] mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-black uppercase mb-6">Redo att borja?</h2>
+      <p class="text-white/60 text-lg max-w-lg mx-auto mb-10">Kontakta oss idag sa hjalper vi dig hitta ratt utrustning eller skapa din drom-putter.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/kontakt" class="inline-flex items-center px-8 py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
+          Kontakta oss
+        </a>
+        <a href="/shop" class="inline-flex items-center px-8 py-4 border-2 border-white text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-white hover:text-brand-black transition-colors">
+          Besok Shop
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

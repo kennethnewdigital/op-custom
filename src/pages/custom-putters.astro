@@ -1,0 +1,262 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const finishes = [
+  {
+    name: "Black Oxide",
+    desc: "Klassisk mork finish med djup, mattsvart ton. Ger en tidlos och professionell look.",
+    price: "1 500 - 2 500 SEK",
+  },
+  {
+    name: "Copper Finish",
+    desc: "Varm kopparton som utvecklar en unik patina over tid. Varje putter blir helt unik.",
+    price: "2 000 - 3 000 SEK",
+  },
+  {
+    name: "Raw Finish",
+    desc: "Ratt stal utan ytbehandling. Utvecklar en naturlig patina och karakter med tiden.",
+    price: "1 500 - 2 500 SEK",
+  },
+  {
+    name: "Painted Finish",
+    desc: "Helt kundanpassad farg och design. Begransas bara av din fantasi.",
+    price: "2 500 - 4 000 SEK",
+  },
+];
+---
+
+<Layout title="Custom Putters" description="Skraddarsydda putters med unik finish - Black Oxide, Copper, Raw och Painted. Begir offert idag.">
+
+  <!-- Hero -->
+  <section class="relative bg-brand-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-30"></div>
+    <div class="relative z-20 max-w-[1430px] mx-auto px-6 py-28 md:py-40">
+      <div class="max-w-2xl">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Custom Finishing</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[0.95] mb-6">
+          Din putter,<br/>din <span class="text-brand-red">stil</span>
+        </h1>
+        <p class="text-lg text-white/70 max-w-lg leading-relaxed">
+          Vi transformerar din Scotty Cameron eller annan premium-putter med skraddarsydd finish. Valj mellan flera stilar och gor din putter unik.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Finishes -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Vara Finishar</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Valj din stil</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {finishes.map((finish) => (
+          <div class="group bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-8 md:p-10 hover:border-brand-red transition-all duration-300">
+            <h3 class="text-xl font-black uppercase tracking-wide mb-3 group-hover:text-brand-red transition-colors">{finish.name}</h3>
+            <p class="text-brand-grey-500 leading-relaxed mb-6">{finish.desc}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-brand-red">{finish.price}</span>
+              <a href="#offert" class="text-sm font-bold uppercase tracking-wider text-brand-black hover:text-brand-red transition-colors">
+                Begir offert &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-20 md:py-28 bg-brand-grey-50">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Processen</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Hur det fungerar</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-14 h-14 bg-brand-black text-white rounded-full flex items-center justify-center mx-auto mb-5 text-xl font-black">1</div>
+          <h3 class="font-bold uppercase text-sm tracking-wide mb-2">Valj finish</h3>
+          <p class="text-sm text-brand-grey-500">Bestam vilken stil och finish du vill ha pa din putter.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-brand-black text-white rounded-full flex items-center justify-center mx-auto mb-5 text-xl font-black">2</div>
+          <h3 class="font-bold uppercase text-sm tracking-wide mb-2">Begir offert</h3>
+          <p class="text-sm text-brand-grey-500">Fyll i formularet nedan sa aterkommer vi med pris och tidsplan.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-brand-black text-white rounded-full flex items-center justify-center mx-auto mb-5 text-xl font-black">3</div>
+          <h3 class="font-bold uppercase text-sm tracking-wide mb-2">Skicka in</h3>
+          <p class="text-sm text-brand-grey-500">Skicka din putter till oss. Vi hanterar allt med storsta omsorg.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-brand-red text-white rounded-full flex items-center justify-center mx-auto mb-5 text-xl font-black">4</div>
+          <h3 class="font-bold uppercase text-sm tracking-wide mb-2">Klar!</h3>
+          <p class="text-sm text-brand-grey-500">Fa tillbaka en helt unik putter med din personliga finish.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section class="py-16 bg-white border-b border-brand-grey-200">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="max-w-3xl mx-auto bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-8 md:p-10">
+        <h3 class="font-black uppercase text-sm tracking-wide mb-4">Viktig information</h3>
+        <ul class="space-y-2 text-sm text-brand-grey-600">
+          <li class="flex gap-2">
+            <span class="text-brand-red font-bold">•</span>
+            Befintlig finish maste tas bort (stripping) innan ny finish appliceras.
+          </li>
+          <li class="flex gap-2">
+            <span class="text-brand-red font-bold">•</span>
+            Pro Platinum, Black Pearl och Chrome Coated kluver kraver extra stripping (tillaggskostnad).
+          </li>
+          <li class="flex gap-2">
+            <span class="text-brand-red font-bold">•</span>
+            Leveranstid ar normalt 2-4 veckor beroende pa finish och komplexitet.
+          </li>
+          <li class="flex gap-2">
+            <span class="text-brand-red font-bold">•</span>
+            Alla priser ar inklusive moms.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Form -->
+  <section id="offert" class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Offertforfragan</p>
+          <h2 class="text-3xl md:text-4xl font-black uppercase">Begir offert</h2>
+          <p class="text-brand-grey-500 mt-4">Fyll i formularet nedan sa aterkommer vi med en offert inom 24 timmar.</p>
+        </div>
+
+        <form class="space-y-6" name="custom-putter-quote" method="POST" enctype="multipart/form-data">
+          <!-- Finish Selection -->
+          <div>
+            <label for="finish" class="block text-xs font-bold uppercase tracking-wider mb-2">Valj finish *</label>
+            <select
+              id="finish"
+              name="finish"
+              required
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white"
+            >
+              <option value="">-- Valj finish --</option>
+              <option value="black-oxide">Black Oxide</option>
+              <option value="copper">Copper Finish</option>
+              <option value="raw">Raw Finish</option>
+              <option value="painted">Painted Finish</option>
+            </select>
+          </div>
+
+          <!-- Sheen -->
+          <div>
+            <label for="sheen" class="block text-xs font-bold uppercase tracking-wider mb-2">Lyster / Sheen</label>
+            <select
+              id="sheen"
+              name="sheen"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white"
+            >
+              <option value="">-- Valj lyster --</option>
+              <option value="matte">Matte</option>
+              <option value="polished">Polished</option>
+              <option value="satin">Satin</option>
+            </select>
+          </div>
+
+          <!-- Fill Color -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider mb-3">Fyllnadsfarg (valfritt)</label>
+            <div class="flex flex-wrap gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="fill_color" value="red" class="w-4 h-4 accent-brand-red" />
+                <span class="text-sm">Rod</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="fill_color" value="green" class="w-4 h-4 accent-brand-red" />
+                <span class="text-sm">Gron</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="fill_color" value="blue" class="w-4 h-4 accent-brand-red" />
+                <span class="text-sm">Bla</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="fill_color" value="white" class="w-4 h-4 accent-brand-red" />
+                <span class="text-sm">Vit</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="fill_color" value="black" class="w-4 h-4 accent-brand-red" />
+                <span class="text-sm">Svart</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Name & Email -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-xs font-bold uppercase tracking-wider mb-2">Namn *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="Ditt namn"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-xs font-bold uppercase tracking-wider mb-2">E-post *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="din@epost.se"
+              />
+            </div>
+          </div>
+
+          <!-- Image Upload -->
+          <div>
+            <label for="image" class="block text-xs font-bold uppercase tracking-wider mb-2">Ladda upp referensbild (valfritt)</label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-brand-grey-100 file:text-brand-black hover:file:bg-brand-grey-200"
+            />
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-xs font-bold uppercase tracking-wider mb-2">Meddelande</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors resize-y"
+              placeholder="Beskriv vad du onskar — puttermodell, onskad finish, speciella onskemal..."
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="w-full py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors"
+          >
+            Skicka offertforfragan
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</Layout>

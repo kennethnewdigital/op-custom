@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const products = [
+  {
+    name: "Scotty Cameron MOTO LTD Newport 2",
+    price: "9 999 kr",
+    originalPrice: "12 999 kr",
+    badge: "REA",
+    category: "Putters",
+    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+  },
+  {
+    name: "TaylorMade Qi10 Fairway Wood",
+    price: "3 399 kr",
+    originalPrice: "5 999 kr",
+    badge: "REA",
+    category: "Fairway Woods",
+    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=600&h=600&fit=crop",
+  },
+  {
+    name: "Scotty Cameron Jet Set Black",
+    price: "8 999 kr",
+    originalPrice: "12 999 kr",
+    badge: "REA",
+    category: "Putters",
+    image: "https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?w=600&h=600&fit=crop",
+  },
+  {
+    name: "TaylorMade Qi10 Max Designer Series",
+    price: "5 399 kr",
+    originalPrice: "8 999 kr",
+    badge: "REA",
+    category: "Drivers",
+    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+  },
+  {
+    name: "Scotty Cameron Special Select 4th of July",
+    price: "9 599 kr",
+    originalPrice: null,
+    badge: "Limited",
+    category: "Putters",
+    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+  },
+  {
+    name: "Scotty Cameron Jet Set Newport LTD",
+    price: "9 999 kr",
+    originalPrice: null,
+    badge: "Limited",
+    category: "Putters",
+    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=600&h=600&fit=crop",
+  },
+  {
+    name: "Scotty Cameron Jet Set Phantom LTD",
+    price: "9 999 kr",
+    originalPrice: null,
+    badge: "Limited",
+    category: "Putters",
+    image: "https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?w=600&h=600&fit=crop",
+  },
+  {
+    name: "Scotty Cameron Jet Set Del Mar LTD",
+    price: "9 999 kr",
+    originalPrice: null,
+    badge: "Limited",
+    category: "Putters",
+    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+  },
+];
+---
+
+<Layout title="Shop" description="Premium golfutrustning - Scotty Cameron, TaylorMade & mer. Fri frakt over 1000 kr.">
+
+  <!-- Page Header -->
+  <section class="bg-brand-black text-white py-20 md:py-28">
+    <div class="max-w-[1430px] mx-auto px-6 text-center">
+      <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Premium Utrustning</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase">Shop</h1>
+      <p class="text-white/60 mt-4 max-w-lg mx-auto">Utforska vart sortiment av premium golfutrustning fran varldens basta tillverkare.</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <div class="border-b border-brand-grey-200 bg-white sticky top-20 z-30">
+    <div class="max-w-[1430px] mx-auto px-6 py-4 flex items-center justify-between">
+      <p class="text-sm text-brand-grey-500"><span class="font-bold text-brand-black">{products.length}</span> produkter</p>
+      <div class="flex gap-2">
+        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-black text-white rounded-full">Alla</button>
+        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors">Putters</button>
+        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors">Klubbor</button>
+        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors">REA</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Grid -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <div class="group bg-white rounded-xl overflow-hidden border border-brand-grey-200 hover:shadow-xl transition-all duration-300 cursor-pointer">
+            <div class="relative aspect-square overflow-hidden bg-brand-grey-100">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              {product.badge && (
+                <span class:list={[
+                  "absolute top-3 left-3 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider",
+                  product.badge === "REA" ? "bg-brand-red" : "bg-brand-black",
+                ]}>
+                  {product.badge}
+                </span>
+              )}
+            </div>
+            <div class="p-5">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-brand-grey-400 mb-2">{product.category}</p>
+              <h3 class="text-sm font-bold uppercase tracking-wide leading-snug mb-3">{product.name}</h3>
+              <div class="flex items-center gap-3">
+                <span class:list={[
+                  "font-bold text-lg",
+                  product.originalPrice ? "text-brand-red" : "text-brand-black",
+                ]}>
+                  {product.price}
+                </span>
+                {product.originalPrice && (
+                  <span class="text-brand-grey-400 text-sm line-through">{product.originalPrice}</span>
+                )}
+              </div>
+              <button class="mt-4 w-full py-3 text-xs font-bold uppercase tracking-wider border-2 border-brand-black text-brand-black rounded-full hover:bg-brand-black hover:text-white transition-colors">
+                Kontakta oss
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-brand-grey-50 border-t border-brand-grey-200">
+    <div class="max-w-[1430px] mx-auto px-6 text-center">
+      <h2 class="text-2xl md:text-3xl font-black uppercase mb-4">Hittar du inte det du soker?</h2>
+      <p class="text-brand-grey-500 mb-8 max-w-lg mx-auto">Vi hjalper dig att hitta ratt utrustning. Kontakta oss sa beratter vi mer.</p>
+      <a href="/kontakt" class="inline-flex items-center px-8 py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
+        Kontakta oss
+      </a>
+    </div>
+  </section>
+
+</Layout>
