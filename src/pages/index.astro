@@ -53,37 +53,19 @@ const categories = [
 
   <!-- Categories Carousel -->
   <section class="py-20 md:py-28 bg-white">
-    <div class="max-w-[1430px] mx-auto px-6">
-      <div class="flex items-end justify-between mb-10">
-        <div>
-          <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Kategorier</p>
-          <h2 class="text-3xl md:text-4xl font-black uppercase">Utforska</h2>
-        </div>
-        <div class="hidden sm:flex gap-2">
-          <button id="carousel-prev" class="w-10 h-10 rounded-full border border-brand-grey-300 flex items-center justify-center text-brand-grey-400 hover:border-brand-black hover:text-brand-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed" disabled>
-            <ChevronRight class="w-5 h-5 rotate-180" />
-          </button>
-          <button id="carousel-next" class="w-10 h-10 rounded-full border border-brand-grey-300 flex items-center justify-center text-brand-grey-400 hover:border-brand-black hover:text-brand-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
-            <ChevronRight class="w-5 h-5" />
-          </button>
-        </div>
-      </div>
+    <div class="max-w-[1430px] mx-auto px-6 mb-10">
+      <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Kategorier</p>
+      <h2 class="text-3xl md:text-4xl font-black uppercase">Utforska</h2>
     </div>
     <div
       id="category-carousel"
-      class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-6 pb-4 -mx-0"
-      style="scrollbar-width: none; -ms-overflow-style: none;"
+      class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4"
+      style="scrollbar-width: none; -ms-overflow-style: none; padding-left: max(1.5rem, calc((100% - 1430px) / 2 + 1.5rem)); padding-right: 1.5rem;"
     >
-      <div class="shrink-0 w-[calc((100%-2rem)/1.2)] sm:w-[calc((100%-3rem)/2.3)] lg:w-[calc((100%-5rem)/3.5)] xl:w-[calc((100%-6rem)/4.2)] snap-start first:ml-[max(1.5rem,calc((100%-1430px)/2+1.5rem))] last:mr-6" style="display:none"></div>
-      {categories.map((cat, i) => (
+      {categories.map((cat) => (
         <a
           href={cat.href}
-          class:list={[
-            "group relative shrink-0 snap-start rounded-2xl overflow-hidden",
-            "w-[calc((100%-2rem)/1.2)] sm:w-[calc((100%-3rem)/2.3)] lg:w-[calc((100%-5rem)/3.5)] xl:w-[calc((100%-6rem)/4.2)]",
-            i === 0 ? "ml-[max(1.5rem,calc((100%-1430px)/2+1.5rem))]" : "",
-            i === categories.length - 1 ? "mr-6" : "",
-          ]}
+          class="group relative shrink-0 snap-start rounded-2xl overflow-hidden w-[calc((100%-2rem)/1.2)] sm:w-[calc((100%-3rem)/2.3)] lg:w-[calc((100%-5rem)/3.5)] xl:w-[calc((100%-6rem)/4.2)]"
         >
           <div class="relative aspect-[4/5] overflow-hidden bg-brand-grey-100">
             <img
@@ -100,6 +82,14 @@ const categories = [
           </div>
         </a>
       ))}
+    </div>
+    <div class="max-w-[1430px] mx-auto px-6 mt-6 flex justify-center gap-3">
+      <button id="carousel-prev" class="w-11 h-11 rounded-full border border-brand-grey-300 flex items-center justify-center text-brand-grey-400 hover:border-brand-black hover:text-brand-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+        <ChevronRight class="w-5 h-5 rotate-180" />
+      </button>
+      <button id="carousel-next" class="w-11 h-11 rounded-full border border-brand-grey-300 flex items-center justify-center text-brand-grey-400 hover:border-brand-black hover:text-brand-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+        <ChevronRight class="w-5 h-5" />
+      </button>
     </div>
   </section>
 

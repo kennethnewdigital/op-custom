@@ -21,7 +21,7 @@ export const products: Product[] = [
     originalPrice: "12 999 kr",
     badge: "REA",
     category: "Putters",
-    image: "https://images.unsplash.com/photo-1592919505780-303950717480?w=800&h=800&fit=crop",
+    image: "/images/moto.webp",
     description: "Den ikoniska Newport 2 i en exklusiv MOTO Limited Edition. Precision och känsla i toppklass med handgjord finish.",
     details: [
       "Scotty Cameron Studio Design",
@@ -40,7 +40,7 @@ export const products: Product[] = [
     originalPrice: "5 999 kr",
     badge: "REA",
     category: "Fairway Woods",
-    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+    image: "/images/REA_Qi10_fairway.webp",
     description: "TaylorMade Qi10 med revolutionerande karbonkrona och titanium sula. Maximal fart och förlåtande träffyta.",
     details: [
       "Karbonkrona för lägre tyngdpunkt",
@@ -59,7 +59,7 @@ export const products: Product[] = [
     originalPrice: "12 999 kr",
     badge: "REA",
     category: "Putters",
-    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=800&fit=crop",
+    image: "/images/Jet+Set+Cover+800x800+20220721.jpeg",
     description: "Jet Set serien i elegant svart finish. Perfekt balans mellan klassisk design och modern prestanda.",
     details: [
       "Jet Set Limited kollektion",
@@ -78,7 +78,7 @@ export const products: Product[] = [
     originalPrice: "8 999 kr",
     badge: "REA",
     category: "Drivers",
-    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=800&h=800&fit=crop",
+    image: "/images/rea_produkter.webp",
     description: "Designer Series med unik grafisk design. Samma banbrytande Qi10 Max-prestanda i ett exklusivt utförande.",
     details: [
       "60x Carbon Twist Face",
@@ -97,7 +97,7 @@ export const products: Product[] = [
     originalPrice: null,
     badge: "Limited",
     category: "Putters",
-    image: "https://images.unsplash.com/photo-1592919505780-303950717480?w=800&h=800&fit=crop",
+    image: "/images/4th of july.webp",
     description: "Exklusiv Special Select-utgåva med patriotisk design. Extremt sällsynt samlarputter i begränsad upplaga.",
     details: [
       "Special Select kollektion",
@@ -116,7 +116,7 @@ export const products: Product[] = [
     originalPrice: null,
     badge: "Limited",
     category: "Putters",
-    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+    image: "/images/Newport+2+Fade+20220721+Hero.webp",
     description: "Newport-modellen i den eftertraktade Jet Set LTD-serien. Tidlös design med premiumkänsla.",
     details: [
       "Newport bladmodell",
@@ -135,7 +135,7 @@ export const products: Product[] = [
     originalPrice: null,
     badge: "Limited",
     category: "Putters",
-    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=800&fit=crop",
+    image: "/images/Jet+Set+Grip+800x800+20220721.webp",
     description: "Phantom-modellen med mallet-design i Jet Set LTD-utförande. Maximal stabilitet och alignment.",
     details: [
       "Phantom mallet-modell",
@@ -154,7 +154,7 @@ export const products: Product[] = [
     originalPrice: null,
     badge: "Limited",
     category: "Putters",
-    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=800&h=800&fit=crop",
+    image: "/images/Newport+2+Fade+20220721+Back.webp",
     description: "Del Mar i Jet Set LTD-serien. Mid-mallet med perfekt balans mellan precision och förlåtelse.",
     details: [
       "Del Mar mid-mallet modell",
