@@ -1,25 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { lessons } from "../data/products";
+import { Award, Video, ClipboardList, Users, Radar, ArrowRight, User } from "lucide-astro";
 
 const benefits = [
   {
-    icon: "🎯",
+    icon: "award",
     title: "PGA-certifierad",
     desc: "Nico Agnoletto är utbildad och certifierad PGA-instruktör med internationell erfarenhet.",
   },
   {
-    icon: "📹",
+    icon: "video",
     title: "Videoanalys",
     desc: "Modern videoanalys med slow motion för att identifiera och korrigera dina svagpunkter.",
   },
   {
-    icon: "📋",
+    icon: "radar",
+    title: "TrackMan",
+    desc: "Alla lektioner inkluderar TrackMan-analys för exakt data på bollbana, klubbhastighet och spin.",
+  },
+  {
+    icon: "clipboard",
     title: "Personlig plan",
     desc: "Varje elev får en skräddarsydd övningsplan att ta med sig hem efter lektionen.",
   },
   {
-    icon: "🏌️",
+    icon: "users",
     title: "Alla nivåer",
     desc: "Från nybörjare till tävlingsspelare — undervisningen anpassas helt efter dig.",
   },
@@ -44,7 +50,7 @@ const benefits = [
         <div class="flex flex-wrap gap-4 mt-8">
           <a href="/tidsbokning" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
             Boka tid
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            <ArrowRight class="w-4 h-4" />
           </a>
           <a href="/nico-agnoletto" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white text-sm font-bold uppercase tracking-wider rounded-full hover:border-white transition-colors">
             Om Nico
@@ -61,10 +67,16 @@ const benefits = [
         <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Varför OP Custom</p>
         <h2 class="text-3xl md:text-4xl font-black uppercase">Professionell träning</h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
         {benefits.map((b) => (
           <div class="text-center">
-            <div class="text-4xl mb-4">{b.icon}</div>
+            <div class="w-12 h-12 mx-auto mb-4 bg-brand-red/10 rounded-xl flex items-center justify-center text-brand-red">
+              {b.icon === "award" && <Award class="w-6 h-6" />}
+              {b.icon === "video" && <Video class="w-6 h-6" />}
+              {b.icon === "radar" && <Radar class="w-6 h-6" />}
+              {b.icon === "clipboard" && <ClipboardList class="w-6 h-6" />}
+              {b.icon === "users" && <Users class="w-6 h-6" />}
+            </div>
             <h3 class="text-sm font-black uppercase tracking-wider mb-3">{b.title}</h3>
             <p class="text-sm text-brand-grey-500 leading-relaxed">{b.desc}</p>
           </div>
@@ -81,7 +93,7 @@ const benefits = [
           <div class="aspect-[4/5] bg-brand-grey-200 rounded-2xl overflow-hidden">
             <div class="w-full h-full flex items-center justify-center bg-brand-grey-300">
               <div class="text-center">
-                <svg class="w-24 h-24 mx-auto text-brand-grey-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                <User class="w-24 h-24 mx-auto text-brand-grey-400" strokeWidth={1} />
                 <p class="text-brand-grey-400 text-sm mt-2">Foto kommer</p>
               </div>
             </div>
@@ -94,12 +106,15 @@ const benefits = [
           <p class="text-brand-grey-500 leading-relaxed mb-4">
             Med passion för golf och pedagogik hjälper Nico dig att utveckla ditt spel oavsett var du befinner dig. Hans filosofi bygger på att varje spelare är unik och att träningen ska vara rolig, effektiv och resultatdriven.
           </p>
+          <p class="text-brand-grey-500 leading-relaxed mb-4">
+            Alla lektioner sker med stöd av <strong class="text-brand-black">TrackMan</strong> — världsledande launch monitor som ger exakt data på klubbhastighet, bollbana, spin och smashfaktor. Perfekt för att mäta och följa dina framsteg.
+          </p>
           <p class="text-brand-grey-500 leading-relaxed mb-8">
             Nico har erfarenhet av att träna spelare på alla nivåer — från de som aldrig hållit i en klubba till tävlingsspelare med lågt handikapp.
           </p>
           <a href="/nico-agnoletto" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-brand-red hover:text-brand-red-dark transition-colors">
             Läs mer om Nico
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            <ArrowRight class="w-4 h-4" />
           </a>
         </div>
       </div>

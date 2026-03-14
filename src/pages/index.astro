@@ -1,19 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { products } from "../data/products";
+import { ChevronRight } from "lucide-astro";
 
 const featuredProducts = products.filter((p) => p.badge === "REA").slice(0, 4);
 
 const categories = [
-  { name: "Custom Putters", href: "/custom-putters", desc: "Unika finishar & personlig design" },
-  { name: "Titleist Logobollar", href: "/titleist-logobollar", desc: "Eget tryck & logotyp" },
-  { name: "Golfträning", href: "/golftraning", desc: "PGA-instruktör Nico Agnoletto" },
-  { name: "Golfklubbor", href: "/shop", desc: "Premium klubbor" },
-  { name: "Premium Skaft", href: "/shop", desc: "Topprestanda skaft" },
-  { name: "Tillbehör", href: "/shop", desc: "Allt för din golf" },
-  { name: "Boka tid", href: "/tidsbokning", desc: "Boka lektion med Nico" },
-  { name: "Scotty Trade-In", href: "/shop", desc: "Byt in din gamla putter" },
-  { name: "Shop", href: "/shop", desc: "Se alla produkter" },
+  { name: "Custom Putters", href: "/custom-putters", desc: "Unika finishar & personlig design", image: "/images/op-costome-scotty-cameron-custom kopiera.webp" },
+  { name: "Scotty Cameron", href: "/shop", desc: "Premium putters sedan 1991", image: "/images/moto.webp" },
+  { name: "Titleist Logobollar", href: "/titleist-logobollar", desc: "Eget tryck & logotyp", image: "/images/T2029S_01.avif" },
+  { name: "Golfträning", href: "/golftraning", desc: "PGA-instruktör & TrackMan", image: "/images/hero_op-custom.webp" },
+  { name: "Golfklubbor", href: "/shop", desc: "Drivers, fairway woods & mer", image: "/images/REA_Qi10_fairway.webp" },
+  { name: "Tillbehör", href: "/shop", desc: "Grepp, skaft & tillbehör", image: "/images/golfgrepp.webp" },
+  { name: "Boka tid", href: "/tidsbokning", desc: "Boka lektion med Nico", image: "/images/4.jpg" },
+  { name: "REA", href: "/shop", desc: "Utvalda produkter till kampanjpris", image: "/images/rea_produkter.webp" },
 ];
 ---
 
@@ -21,8 +21,14 @@ const categories = [
 
   <!-- Hero Section -->
   <section class="relative bg-brand-black text-white overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/90 to-transparent z-10"></div>
-    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-40"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/70 to-transparent z-10"></div>
+    <div class="absolute inset-0">
+      <img
+        src="/images/hero_op-custom.webp"
+        alt="Golfare på driving range"
+        class="w-full h-full object-cover object-[30%_center] lg:object-[50%_center]"
+      />
+    </div>
     <div class="relative z-20 max-w-[1430px] mx-auto px-6 py-32 md:py-44 lg:py-56">
       <div class="max-w-2xl">
         <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Premium Golf Equipment</p>
@@ -45,31 +51,55 @@ const categories = [
     </div>
   </section>
 
-  <!-- Categories Grid -->
+  <!-- Categories Carousel -->
   <section class="py-20 md:py-28 bg-white">
     <div class="max-w-[1430px] mx-auto px-6">
-      <div class="text-center mb-16">
-        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Kategorier</p>
-        <h2 class="text-3xl md:text-4xl font-black uppercase">Vad letar du efter?</h2>
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Kategorier</p>
+          <h2 class="text-3xl md:text-4xl font-black uppercase">Utforska</h2>
+        </div>
+        <div class="hidden sm:flex gap-2">
+          <button id="carousel-prev" class="w-10 h-10 rounded-full border border-brand-grey-300 flex items-center justify-center text-brand-grey-400 hover:border-brand-black hover:text-brand-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+            <ChevronRight class="w-5 h-5 rotate-180" />
+          </button>
+          <button id="carousel-next" class="w-10 h-10 rounded-full border border-brand-grey-300 flex items-center justify-center text-brand-grey-400 hover:border-brand-black hover:text-brand-black transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
+            <ChevronRight class="w-5 h-5" />
+          </button>
+        </div>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {categories.map((cat) => (
-          <a
-            href={cat.href}
-            class="group relative bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-8 hover:border-brand-red hover:shadow-lg transition-all duration-300"
-          >
-            <div class="flex items-start justify-between">
-              <div>
-                <h3 class="text-lg font-bold uppercase tracking-wide group-hover:text-brand-red transition-colors">{cat.name}</h3>
-                <p class="text-sm text-brand-grey-500 mt-1">{cat.desc}</p>
-              </div>
-              <svg class="w-5 h-5 text-brand-grey-300 group-hover:text-brand-red group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
+    </div>
+    <div
+      id="category-carousel"
+      class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-6 pb-4 -mx-0"
+      style="scrollbar-width: none; -ms-overflow-style: none;"
+    >
+      <div class="shrink-0 w-[calc((100%-2rem)/1.2)] sm:w-[calc((100%-3rem)/2.3)] lg:w-[calc((100%-5rem)/3.5)] xl:w-[calc((100%-6rem)/4.2)] snap-start first:ml-[max(1.5rem,calc((100%-1430px)/2+1.5rem))] last:mr-6" style="display:none"></div>
+      {categories.map((cat, i) => (
+        <a
+          href={cat.href}
+          class:list={[
+            "group relative shrink-0 snap-start rounded-2xl overflow-hidden",
+            "w-[calc((100%-2rem)/1.2)] sm:w-[calc((100%-3rem)/2.3)] lg:w-[calc((100%-5rem)/3.5)] xl:w-[calc((100%-6rem)/4.2)]",
+            i === 0 ? "ml-[max(1.5rem,calc((100%-1430px)/2+1.5rem))]" : "",
+            i === categories.length - 1 ? "mr-6" : "",
+          ]}
+        >
+          <div class="relative aspect-[4/5] overflow-hidden bg-brand-grey-100">
+            <img
+              src={cat.image}
+              alt={cat.name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <h3 class="text-white text-lg font-black uppercase tracking-wide mb-1">{cat.name}</h3>
+              <p class="text-white/60 text-sm">{cat.desc}</p>
             </div>
-          </a>
-        ))}
-      </div>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 
@@ -160,3 +190,39 @@ const categories = [
   </section>
 
 </Layout>
+
+<script>
+  const carousel = document.getElementById('category-carousel');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+
+  if (carousel && prevBtn && nextBtn) {
+    const getScrollAmount = () => {
+      const card = carousel.querySelector('a');
+      return card ? card.offsetWidth + 16 : 320;
+    };
+
+    const updateButtons = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = carousel;
+      (prevBtn as HTMLButtonElement).disabled = scrollLeft <= 10;
+      (nextBtn as HTMLButtonElement).disabled = scrollLeft + clientWidth >= scrollWidth - 10;
+    };
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    carousel.addEventListener('scroll', updateButtons, { passive: true });
+    updateButtons();
+  }
+</script>
+
+<style>
+  #category-carousel::-webkit-scrollbar {
+    display: none;
+  }
+</style>
