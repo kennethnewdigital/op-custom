@@ -1,72 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-const products = [
-  {
-    name: "Scotty Cameron MOTO LTD Newport 2",
-    price: "9 999 kr",
-    originalPrice: "12 999 kr",
-    badge: "REA",
-    category: "Putters",
-    image: "https://images.unsplash.com/photo-1592919505780-303950717480?w=600&h=600&fit=crop",
-  },
-  {
-    name: "TaylorMade Qi10 Fairway Wood",
-    price: "3 399 kr",
-    originalPrice: "5 999 kr",
-    badge: "REA",
-    category: "Fairway Woods",
-    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
-  },
-  {
-    name: "Scotty Cameron Jet Set Black",
-    price: "8 999 kr",
-    originalPrice: "12 999 kr",
-    badge: "REA",
-    category: "Putters",
-    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
-  },
-  {
-    name: "TaylorMade Qi10 Max Designer Series",
-    price: "5 399 kr",
-    originalPrice: "8 999 kr",
-    badge: "REA",
-    category: "Drivers",
-    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=600&h=600&fit=crop",
-  },
-  {
-    name: "Scotty Cameron Special Select 4th of July",
-    price: "9 599 kr",
-    originalPrice: null,
-    badge: "Limited",
-    category: "Putters",
-    image: "https://images.unsplash.com/photo-1592919505780-303950717480?w=600&h=600&fit=crop",
-  },
-  {
-    name: "Scotty Cameron Jet Set Newport LTD",
-    price: "9 999 kr",
-    originalPrice: null,
-    badge: "Limited",
-    category: "Putters",
-    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
-  },
-  {
-    name: "Scotty Cameron Jet Set Phantom LTD",
-    price: "9 999 kr",
-    originalPrice: null,
-    badge: "Limited",
-    category: "Putters",
-    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
-  },
-  {
-    name: "Scotty Cameron Jet Set Del Mar LTD",
-    price: "9 999 kr",
-    originalPrice: null,
-    badge: "Limited",
-    category: "Putters",
-    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=600&h=600&fit=crop",
-  },
-];
+import { products } from "../data/products";
 ---
 
 <Layout title="Shop" description="Premium golfutrustning – Scotty Cameron, TaylorMade & mer. Fri frakt över 1000 kr.">
@@ -85,10 +19,10 @@ const products = [
     <div class="max-w-[1430px] mx-auto px-6 py-4 flex items-center justify-between">
       <p class="text-sm text-brand-grey-500"><span class="font-bold text-brand-black">{products.length}</span> produkter</p>
       <div class="flex gap-2">
-        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-black text-white rounded-full">Alla</button>
-        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors">Putters</button>
-        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors">Klubbor</button>
-        <button class="px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors">REA</button>
+        <button class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-black text-white rounded-full" data-filter="all">Alla</button>
+        <button class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors" data-filter="Putters">Putters</button>
+        <button class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors" data-filter="Drivers">Drivers</button>
+        <button class="filter-btn px-4 py-2 text-xs font-bold uppercase tracking-wider border border-brand-grey-300 text-brand-grey-500 rounded-full hover:border-brand-black hover:text-brand-black transition-colors" data-filter="REA">REA</button>
       </div>
     </div>
   </div>
@@ -96,9 +30,9 @@ const products = [
   <!-- Products Grid -->
   <section class="py-16 md:py-20 bg-white">
     <div class="max-w-[1430px] mx-auto px-6">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="products-grid">
         {products.map((product) => (
-          <div class="group bg-white rounded-xl overflow-hidden border border-brand-grey-200 hover:shadow-xl transition-all duration-300 cursor-pointer">
+          <a href={`/produkt/${product.slug}`} class="product-card group bg-white rounded-xl overflow-hidden border border-brand-grey-200 hover:shadow-xl transition-all duration-300" data-category={product.category} data-badge={product.badge}>
             <div class="relative aspect-square overflow-hidden bg-brand-grey-100">
               <img
                 src={product.image}
@@ -129,11 +63,8 @@ const products = [
                   <span class="text-brand-grey-400 text-sm line-through">{product.originalPrice}</span>
                 )}
               </div>
-              <button class="mt-4 w-full py-3 text-xs font-bold uppercase tracking-wider border-2 border-brand-black text-brand-black rounded-full hover:bg-brand-black hover:text-white transition-colors">
-                Kontakta oss
-              </button>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
@@ -151,3 +82,35 @@ const products = [
   </section>
 
 </Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const productCards = document.querySelectorAll('.product-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter;
+
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-brand-black', 'text-white');
+        b.classList.add('border', 'border-brand-grey-300', 'text-brand-grey-500');
+      });
+      btn.classList.add('bg-brand-black', 'text-white');
+      btn.classList.remove('border', 'border-brand-grey-300', 'text-brand-grey-500');
+
+      productCards.forEach((card) => {
+        const el = card as HTMLElement;
+        const category = el.dataset.category;
+        const badge = el.dataset.badge;
+
+        if (filter === 'all') {
+          el.style.display = '';
+        } else if (filter === 'REA') {
+          el.style.display = badge === 'REA' ? '' : 'none';
+        } else {
+          el.style.display = category === filter ? '' : 'none';
+        }
+      });
+    });
+  });
+</script>

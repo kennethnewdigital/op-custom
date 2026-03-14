@@ -1,45 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-const services = [
-  {
-    title: "Privatlektion",
-    duration: "60 min",
-    desc: "En-till-en undervisning anpassad efter din nivå och dina mål. Videoanalys och övningsplan ingår.",
-    price: "1 200 kr",
-  },
-  {
-    title: "Halvlektion",
-    duration: "30 min",
-    desc: "Fokuserad session på ett specifikt område — sving, kortspel eller putting.",
-    price: "700 kr",
-  },
-  {
-    title: "Paket 5 lektioner",
-    duration: "5 × 60 min",
-    desc: "Spara 15% med ett paket. Perfekt för att bygga en stabil grund och följa upp framsteg.",
-    price: "5 100 kr",
-    popular: true,
-  },
-  {
-    title: "Paket 10 lektioner",
-    duration: "10 × 60 min",
-    desc: "Maximera din utveckling med 10 lektioner. Mest prisvärt för den dedikerade spelaren.",
-    price: "9 600 kr",
-  },
-  {
-    title: "Nybörjarkurs",
-    duration: "4 × 90 min",
-    desc: "Lär dig grunderna i golf. Sving, regler, etikett och kortspel. Grupp om max 4 personer.",
-    price: "2 400 kr",
-  },
-  {
-    title: "On-Course Lektion",
-    duration: "90 min",
-    desc: "Spela 4-6 hål tillsammans med Nico. Lär dig kurshantering, strategi och mentalt spel.",
-    price: "1 800 kr",
-  },
-];
+import { lessons } from "../data/products";
 
 const benefits = [
   {
@@ -153,9 +114,9 @@ const benefits = [
         <h2 class="text-3xl md:text-4xl font-black uppercase">Välj din träning</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((s) => (
+        {lessons.map((s) => (
           <div class:list={[
-            "relative bg-brand-grey-50 border rounded-xl p-8 transition-all duration-300 hover:shadow-lg",
+            "relative bg-brand-grey-50 border rounded-xl p-8 transition-all duration-300 hover:shadow-lg flex flex-col",
             s.popular ? "border-brand-red shadow-md" : "border-brand-grey-200 hover:border-brand-red",
           ]}>
             {s.popular && (
@@ -170,7 +131,19 @@ const benefits = [
               </div>
               <span class="text-lg font-black text-brand-red whitespace-nowrap">{s.price}</span>
             </div>
-            <p class="text-sm text-brand-grey-500 leading-relaxed">{s.desc}</p>
+            <p class="text-sm text-brand-grey-500 leading-relaxed mb-6">{s.desc}</p>
+            <div class="mt-auto flex gap-2">
+              <button
+                class="stripe-buy-btn flex-1 py-3 bg-brand-red text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors"
+                data-price-id={s.stripePriceId}
+                data-product-name={s.title}
+              >
+                Köp & Boka
+              </button>
+              <a href="/tidsbokning" class="flex-1 py-3 text-center text-xs font-bold uppercase tracking-wider border-2 border-brand-black text-brand-black rounded-full hover:bg-brand-black hover:text-white transition-colors">
+                Boka tid
+              </a>
+            </div>
           </div>
         ))}
       </div>
@@ -193,3 +166,33 @@ const benefits = [
   </section>
 
 </Layout>
+
+<script>
+  const STRIPE_PUBLISHABLE_KEY = 'pk_test_XXXXX'; // TODO: Add real key
+
+  document.querySelectorAll('.stripe-buy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const priceId = (btn as HTMLElement).dataset.priceId;
+      const productName = (btn as HTMLElement).dataset.productName;
+
+      if (!priceId || priceId === 'price_XXXXX') {
+        alert(`Betalning via Stripe kommer snart!\n\nLektion: ${productName}\n\nKontakta oss på hello@op-custom.com för att boka och betala.`);
+        return;
+      }
+
+      try {
+        const stripe = (window as any).Stripe?.(STRIPE_PUBLISHABLE_KEY);
+        if (stripe) {
+          await stripe.redirectToCheckout({
+            lineItems: [{ price: priceId, quantity: 1 }],
+            mode: 'payment',
+            successUrl: `${window.location.origin}/tack`,
+            cancelUrl: window.location.href,
+          });
+        }
+      } catch (err) {
+        alert('Något gick fel. Kontakta oss på hello@op-custom.com.');
+      }
+    });
+  });
+</script>

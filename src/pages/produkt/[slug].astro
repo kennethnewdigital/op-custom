@@ -1,0 +1,192 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { products, type Product } from "../../data/products";
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props as { product: Product };
+
+const relatedProducts = products
+  .filter((p) => p.slug !== product.slug && p.category === product.category)
+  .slice(0, 4);
+---
+
+<Layout title={product.name} description={product.description}>
+
+  <!-- Breadcrumb -->
+  <section class="bg-brand-grey-50 border-b border-brand-grey-200">
+    <div class="max-w-[1430px] mx-auto px-6 py-4">
+      <nav class="flex items-center gap-2 text-xs text-brand-grey-400">
+        <a href="/" class="hover:text-brand-red transition-colors">Hem</a>
+        <span>/</span>
+        <a href="/shop" class="hover:text-brand-red transition-colors">Shop</a>
+        <span>/</span>
+        <span class="text-brand-black font-semibold">{product.name}</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Product Detail -->
+  <section class="py-12 md:py-20 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <!-- Image -->
+        <div class="relative">
+          <div class="aspect-square rounded-2xl overflow-hidden bg-brand-grey-100">
+            <img
+              src={product.image}
+              alt={product.name}
+              class="w-full h-full object-cover"
+            />
+          </div>
+          {product.badge && (
+            <span class:list={[
+              "absolute top-4 left-4 text-white text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider",
+              product.badge === "REA" ? "bg-brand-red" : "bg-brand-black",
+            ]}>
+              {product.badge}
+            </span>
+          )}
+        </div>
+
+        <!-- Info -->
+        <div class="flex flex-col">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-brand-grey-400 mb-3">{product.category}</p>
+          <h1 class="text-3xl md:text-4xl font-black uppercase leading-tight mb-6">{product.name}</h1>
+
+          <div class="flex items-baseline gap-4 mb-8">
+            <span class:list={[
+              "text-3xl font-black",
+              product.originalPrice ? "text-brand-red" : "text-brand-black",
+            ]}>
+              {product.price}
+            </span>
+            {product.originalPrice && (
+              <span class="text-xl text-brand-grey-400 line-through">{product.originalPrice}</span>
+            )}
+          </div>
+
+          <p class="text-brand-grey-600 leading-relaxed mb-8">{product.description}</p>
+
+          <!-- Details -->
+          <div class="border-t border-brand-grey-200 pt-6 mb-8">
+            <h3 class="text-xs font-bold uppercase tracking-wider mb-4">Detaljer</h3>
+            <ul class="space-y-2">
+              {product.details.map((detail) => (
+                <li class="flex items-start gap-3 text-sm text-brand-grey-600">
+                  <svg class="w-4 h-4 text-brand-red shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Buy Button -->
+          <div class="mt-auto space-y-3">
+            <button
+              class="stripe-buy-btn w-full py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors flex items-center justify-center gap-2"
+              data-price-id={product.stripePriceId}
+              data-product-name={product.name}
+            >
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+              Köp nu — {product.price}
+            </button>
+            <a href="/kontakt" class="block w-full py-4 text-center text-sm font-bold uppercase tracking-wider border-2 border-brand-black text-brand-black rounded-full hover:bg-brand-black hover:text-white transition-colors">
+              Ställ en fråga
+            </a>
+          </div>
+
+          <!-- Trust -->
+          <div class="mt-8 grid grid-cols-3 gap-4 text-center border-t border-brand-grey-200 pt-6">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider mb-1">Fri frakt</p>
+              <p class="text-[10px] text-brand-grey-400">Över 1 000 kr</p>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider mb-1">Säker betalning</p>
+              <p class="text-[10px] text-brand-grey-400">Via Stripe</p>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider mb-1">14 dagars retur</p>
+              <p class="text-[10px] text-brand-grey-400">Öppet köp</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  {relatedProducts.length > 0 && (
+    <section class="py-16 md:py-24 bg-brand-grey-50 border-t border-brand-grey-200">
+      <div class="max-w-[1430px] mx-auto px-6">
+        <h2 class="text-2xl font-black uppercase mb-8">Relaterade produkter</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {relatedProducts.map((p) => (
+            <a href={`/produkt/${p.slug}`} class="group bg-white rounded-xl overflow-hidden border border-brand-grey-200 hover:shadow-xl transition-all duration-300">
+              <div class="relative aspect-square overflow-hidden bg-brand-grey-100">
+                <img src={p.image} alt={p.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                {p.badge && (
+                  <span class:list={[
+                    "absolute top-3 left-3 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider",
+                    p.badge === "REA" ? "bg-brand-red" : "bg-brand-black",
+                  ]}>
+                    {p.badge}
+                  </span>
+                )}
+              </div>
+              <div class="p-5">
+                <h3 class="text-sm font-bold uppercase tracking-wide leading-snug mb-3">{p.name}</h3>
+                <div class="flex items-center gap-3">
+                  <span class:list={["font-bold text-lg", p.originalPrice ? "text-brand-red" : "text-brand-black"]}>
+                    {p.price}
+                  </span>
+                  {p.originalPrice && <span class="text-brand-grey-400 text-sm line-through">{p.originalPrice}</span>}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+</Layout>
+
+<script>
+  // Stripe Checkout integration — replace with your publishable key
+  const STRIPE_PUBLISHABLE_KEY = 'pk_test_XXXXX'; // TODO: Add real key
+
+  document.querySelectorAll('.stripe-buy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const priceId = (btn as HTMLElement).dataset.priceId;
+      const productName = (btn as HTMLElement).dataset.productName;
+
+      if (!priceId || priceId === 'price_XXXXX') {
+        // Stripe not configured yet — show info
+        alert(`Betalning via Stripe kommer snart!\n\nProdukt: ${productName}\n\nKontakta oss på hello@op-custom.com för att beställa.`);
+        return;
+      }
+
+      // When Stripe is configured, redirect to Checkout
+      try {
+        const stripe = (window as any).Stripe?.(STRIPE_PUBLISHABLE_KEY);
+        if (stripe) {
+          await stripe.redirectToCheckout({
+            lineItems: [{ price: priceId, quantity: 1 }],
+            mode: 'payment',
+            successUrl: `${window.location.origin}/tack`,
+            cancelUrl: window.location.href,
+          });
+        }
+      } catch (err) {
+        alert('Något gick fel. Kontakta oss på hello@op-custom.com.');
+      }
+    });
+  });
+</script>

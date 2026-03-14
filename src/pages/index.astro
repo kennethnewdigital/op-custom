@@ -1,45 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { products } from "../data/products";
 
-const featuredProducts = [
-  {
-    name: "Scotty Cameron MOTO LTD Newport 2",
-    price: "9 999 kr",
-    originalPrice: "12 999 kr",
-    badge: "REA",
-    image: "https://images.unsplash.com/photo-1592919505780-303950717480?w=600&h=600&fit=crop",
-  },
-  {
-    name: "TaylorMade Qi10 Fairway Wood",
-    price: "3 399 kr",
-    originalPrice: "5 999 kr",
-    badge: "REA",
-    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
-  },
-  {
-    name: "Scotty Cameron Jet Set Black",
-    price: "8 999 kr",
-    originalPrice: "12 999 kr",
-    badge: "REA",
-    image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
-  },
-  {
-    name: "TaylorMade Qi10 Max Designer Series",
-    price: "5 399 kr",
-    originalPrice: "8 999 kr",
-    badge: "REA",
-    image: "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=600&h=600&fit=crop",
-  },
-];
+const featuredProducts = products.filter((p) => p.badge === "REA").slice(0, 4);
 
 const categories = [
   { name: "Custom Putters", href: "/custom-putters", desc: "Unika finishar & personlig design" },
   { name: "Titleist Logobollar", href: "/titleist-logobollar", desc: "Eget tryck & logotyp" },
-  { name: "Putter Fitting", href: "/shop", desc: "Professionell anpassning" },
+  { name: "Golfträning", href: "/golftraning", desc: "PGA-instruktör Nico Agnoletto" },
   { name: "Golfklubbor", href: "/shop", desc: "Premium klubbor" },
   { name: "Premium Skaft", href: "/shop", desc: "Topprestanda skaft" },
   { name: "Tillbehör", href: "/shop", desc: "Allt för din golf" },
-  { name: "Golfträning", href: "/shop", desc: "Förbättra ditt spel" },
+  { name: "Boka tid", href: "/tidsbokning", desc: "Boka lektion med Nico" },
   { name: "Scotty Trade-In", href: "/shop", desc: "Byt in din gamla putter" },
   { name: "Shop", href: "/shop", desc: "Se alla produkter" },
 ];
@@ -110,7 +82,7 @@ const categories = [
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {featuredProducts.map((product) => (
-          <a href="/shop" class="group bg-white rounded-xl overflow-hidden border border-brand-grey-200 hover:shadow-xl transition-all duration-300">
+          <a href={`/produkt/${product.slug}`} class="group bg-white rounded-xl overflow-hidden border border-brand-grey-200 hover:shadow-xl transition-all duration-300">
             <div class="relative aspect-square overflow-hidden bg-brand-grey-100">
               <img
                 src={product.image}
