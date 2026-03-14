@@ -4,27 +4,33 @@ import Layout from "../layouts/Layout.astro";
 const ballModels = [
   {
     name: "Pro V1",
-    desc: "Den mest spelade bollen pa touren. Exceptionell distans, konsekvent flykt och mjuk kansla.",
+    image: "/images/T2029S_01.avif",
+    desc: "Den mest spelade bollen på touren. Exceptionell distans, konsekvent flykt och mjuk känsla.",
   },
   {
     name: "Pro V1x",
-    desc: "Hogre flykt och lite fastare kansla. Utmarkt for spelare som soker extra spin runt greenen.",
+    image: "/images/T2049S_01.avif",
+    desc: "Högre flykt och lite fastare känsla. Utmärkt för spelare som söker extra spin runt greenen.",
   },
   {
     name: "AVX",
-    desc: "Lagre flykt och mjukare kansla. Perfekt for spelare som vill ha mindre spin fran tee.",
+    image: "/images/T4015S_01.avif",
+    desc: "Lägre flykt och mjukare känsla. Perfekt för spelare som vill ha mindre spin från tee.",
   },
   {
     name: "Tour Speed",
-    desc: "Utmarkt allroundboll med bra prestanda i alla kategorier till ett lagre pris.",
+    image: "/images/T6036S-2_01.avif",
+    desc: "Utmärkt allroundboll med bra prestanda i alla kategorier till ett lägre pris.",
   },
   {
     name: "Velocity",
-    desc: "Maximal distans och rakare bollflykt. Bra val for spelare som vill ha mer langd.",
+    image: "/images/T8027S_01.avif",
+    desc: "Maximal distans och rakare bollflykt. Bra val för spelare som vill ha mer längd.",
   },
   {
     name: "TruFeel",
-    desc: "Mjukaste Titleist-bollen. Bra kansla och distans for fritidsgolfaren.",
+    image: "/images/T9015S_01.avif",
+    desc: "Mjukaste Titleist-bollen. Bra känsla och distans för fritidsgolfaren.",
   },
 ];
 
@@ -32,23 +38,23 @@ const packages = [
   {
     name: "Startpaket",
     balls: "24 bollar (2 dussin)",
-    desc: "Perfekt for att prova pa logobollar.",
+    desc: "Perfekt för att prova på logobollar.",
   },
   {
-    name: "Vardepaket",
+    name: "Värdepaket",
     balls: "60 + 6 bollar gratis",
-    desc: "Vart mest populara paket. Bast varde for pengarna.",
+    desc: "Vårt mest populära paket. Bäst värde för pengarna.",
     popular: true,
   },
   {
-    name: "Foretagspaket",
+    name: "Företagspaket",
     balls: "120 + 12 bollar gratis",
-    desc: "For storresatsningar, turneringar och kundgavor.",
+    desc: "För större satsningar, turneringar och kundgåvor.",
   },
 ];
 ---
 
-<Layout title="Titleist Logobollar" description="Bestall Titleist golfbollar med egen logotyp. Pro V1, Pro V1x, AVX och fler modeller. Perfekt for foretag och evenemang.">
+<Layout title="Titleist Logobollar" description="Beställ Titleist golfbollar med egen logotyp. Pro V1, Pro V1x, AVX och fler modeller. Perfekt för företag och evenemang.">
 
   <!-- Hero -->
   <section class="relative bg-brand-black text-white overflow-hidden">
@@ -58,10 +64,10 @@ const packages = [
       <div class="max-w-2xl">
         <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Titleist Logobollar</p>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[0.95] mb-6">
-          Din logotyp pa<br/>varldens <span class="text-brand-red">basta</span> boll
+          Din logotyp på<br/>världens <span class="text-brand-red">bästa</span> boll
         </h1>
         <p class="text-lg text-white/70 max-w-lg leading-relaxed">
-          Bestall Titleist golfbollar med eget tryck. Perfekt for foretag, turneringar, evenemang eller som en personlig touch pa din utrustning.
+          Beställ Titleist golfbollar med eget tryck. Perfekt för företag, turneringar, evenemang eller som en personlig touch på din utrustning.
         </p>
       </div>
     </div>
@@ -72,11 +78,14 @@ const packages = [
     <div class="max-w-[1430px] mx-auto px-6">
       <div class="text-center mb-16">
         <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Bollmodeller</p>
-        <h2 class="text-3xl md:text-4xl font-black uppercase">Valj din modell</h2>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Välj din modell</h2>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {ballModels.map((ball) => (
-          <div class="group bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-8 hover:border-brand-red transition-all duration-300">
+          <div class="group bg-brand-grey-50 border border-brand-grey-200 rounded-xl p-6 hover:border-brand-red transition-all duration-300 flex flex-col items-center text-center">
+            <div class="w-40 h-40 mb-4 flex items-center justify-center">
+              <img src={ball.image} alt={ball.name} class="w-full h-full object-contain" />
+            </div>
             <h3 class="text-lg font-black uppercase tracking-wide mb-3 group-hover:text-brand-red transition-colors">{ball.name}</h3>
             <p class="text-sm text-brand-grey-500 leading-relaxed">{ball.desc}</p>
           </div>
@@ -90,7 +99,7 @@ const packages = [
     <div class="max-w-[1430px] mx-auto px-6">
       <div class="text-center mb-16">
         <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Paket</p>
-        <h2 class="text-3xl md:text-4xl font-black uppercase">Valj storlek</h2>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Välj storlek</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         {packages.map((pkg) => (
@@ -100,7 +109,7 @@ const packages = [
           ]}>
             {pkg.popular && (
               <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-red text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-wider">
-                Popularast
+                Populärast
               </span>
             )}
             <h3 class="text-lg font-black uppercase tracking-wide mb-2">{pkg.name}</h3>
@@ -117,18 +126,18 @@ const packages = [
     <div class="max-w-[1430px] mx-auto px-6">
       <div class="max-w-2xl mx-auto">
         <div class="text-center mb-12">
-          <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Offertforfragan</p>
-          <h2 class="text-3xl md:text-4xl font-black uppercase">Bestall Logobollar</h2>
-          <p class="text-brand-grey-500 mt-4">Fyll i formularet sa aterkommer vi med offert och leveranstid.</p>
+          <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Offertförfrågan</p>
+          <h2 class="text-3xl md:text-4xl font-black uppercase">Beställ Logobollar</h2>
+          <p class="text-brand-grey-500 mt-4">Fyll i formuläret så återkommer vi med offert och leveranstid.</p>
         </div>
 
         <form class="space-y-6" name="titleist-order" method="POST" enctype="multipart/form-data">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label for="fname" class="block text-xs font-bold uppercase tracking-wider mb-2">Fornamn *</label>
+              <label for="fname" class="block text-xs font-bold uppercase tracking-wider mb-2">Förnamn *</label>
               <input type="text" id="fname" name="firstname" required
                 class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
-                placeholder="Fornamn" />
+                placeholder="Förnamn" />
             </div>
             <div>
               <label for="lname" class="block text-xs font-bold uppercase tracking-wider mb-2">Efternamn *</label>
@@ -139,10 +148,10 @@ const packages = [
           </div>
 
           <div>
-            <label for="company" class="block text-xs font-bold uppercase tracking-wider mb-2">Foretag</label>
+            <label for="company" class="block text-xs font-bold uppercase tracking-wider mb-2">Företag</label>
             <input type="text" id="company" name="company"
               class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
-              placeholder="Foretagsnamn (valfritt)" />
+              placeholder="Företagsnamn (valfritt)" />
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -161,13 +170,13 @@ const packages = [
           </div>
 
           <div>
-            <label for="package" class="block text-xs font-bold uppercase tracking-wider mb-2">Jag ar intresserad av *</label>
+            <label for="package" class="block text-xs font-bold uppercase tracking-wider mb-2">Jag är intresserad av *</label>
             <select id="package" name="package" required
               class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white">
-              <option value="">-- Valj paket --</option>
+              <option value="">-- Välj paket --</option>
               <option value="start-24">Startpaket (24 bollar)</option>
-              <option value="value-60">Vardepaket (60 + 6 bollar)</option>
-              <option value="corporate-120">Foretagspaket (120 + 12 bollar)</option>
+              <option value="value-60">Värdepaket (60 + 6 bollar)</option>
+              <option value="corporate-120">Företagspaket (120 + 12 bollar)</option>
               <option value="custom">Annat antal</option>
             </select>
           </div>
@@ -176,7 +185,7 @@ const packages = [
             <label for="ball-model" class="block text-xs font-bold uppercase tracking-wider mb-2">Bollmodell</label>
             <select id="ball-model" name="ball_model"
               class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white">
-              <option value="">-- Valj modell --</option>
+              <option value="">-- Välj modell --</option>
               <option value="prov1">Pro V1</option>
               <option value="prov1x">Pro V1x</option>
               <option value="avx">AVX</option>
@@ -198,13 +207,12 @@ const packages = [
             <label for="msg" class="block text-xs font-bold uppercase tracking-wider mb-2">Meddelande</label>
             <textarea id="msg" name="message" rows="4"
               class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors resize-y"
-              placeholder="Eventuella onskemal eller fragor..."
-            ></textarea>
+              placeholder="Eventuella önskemål eller frågor..."></textarea>
           </div>
 
           <button type="submit"
             class="w-full py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
-            Skicka bestallning
+            Skicka beställning
           </button>
         </form>
       </div>

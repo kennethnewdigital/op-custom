@@ -19,16 +19,19 @@
   --font-body: "Inter", system-ui, sans-serif;
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  body {
-    font-family: var(--font-body);
-    color: var(--color-brand-black);
-    background: var(--color-brand-white);
-  }
+body {
+  font-family: var(--font-body);
+  color: #000;
+  background: #fff;
+}
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
 }

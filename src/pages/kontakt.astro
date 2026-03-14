@@ -2,14 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Kontakt" description="Kontakta OP Custom - Vi hjalper dig med premium golfutrustning, custom putters och Titleist logobollar.">
+<Layout title="Kontakt" description="Kontakta OP Custom – Vi hjälper dig med premium golfutrustning, custom putters och Titleist logobollar.">
 
   <!-- Hero -->
   <section class="bg-brand-black text-white py-20 md:py-28">
     <div class="max-w-[1430px] mx-auto px-6 text-center">
       <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Kontakta Oss</p>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase">Hor av dig</h1>
-      <p class="text-white/60 mt-4 max-w-lg mx-auto">Vi svarar normalt inom 24 timmar. Tveka inte att kontakta oss med fragor eller onskemal.</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase">Hör av dig</h1>
+      <p class="text-white/60 mt-4 max-w-lg mx-auto">Vi svarar normalt inom 24 timmar. Tveka inte att kontakta oss med frågor eller önskemål.</p>
     </div>
   </section>
 
@@ -51,7 +51,7 @@ import Layout from "../layouts/Layout.astro";
             </div>
 
             <div class="pt-4 border-t border-brand-grey-200">
-              <h3 class="text-xs font-bold uppercase tracking-widest text-brand-grey-400 mb-3">Snabblank</h3>
+              <h3 class="text-xs font-bold uppercase tracking-widest text-brand-grey-400 mb-3">Snabblänk</h3>
               <ul class="space-y-2">
                 <li><a href="/custom-putters" class="text-sm font-semibold hover:text-brand-red transition-colors">Custom Putters &rarr;</a></li>
                 <li><a href="/titleist-logobollar" class="text-sm font-semibold hover:text-brand-red transition-colors">Titleist Logobollar &rarr;</a></li>
@@ -65,15 +65,15 @@ import Layout from "../layouts/Layout.astro";
         <div>
           <div class="bg-brand-grey-50 border border-brand-grey-200 rounded-2xl p-8 md:p-12">
             <h2 class="text-2xl font-black uppercase mb-2">Skicka ett meddelande</h2>
-            <p class="text-brand-grey-500 text-sm mb-8">Fyll i formularet sa aterkommer vi sa snart som mojligt.</p>
+            <p class="text-brand-grey-500 text-sm mb-8">Fyll i formuläret så återkommer vi så snart som möjligt.</p>
 
             <form class="space-y-6" name="contact" method="POST">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label for="c-fname" class="block text-xs font-bold uppercase tracking-wider mb-2">Fornamn *</label>
+                  <label for="c-fname" class="block text-xs font-bold uppercase tracking-wider mb-2">Förnamn *</label>
                   <input type="text" id="c-fname" name="firstname" required
                     class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white"
-                    placeholder="Fornamn" />
+                    placeholder="Förnamn" />
                 </div>
                 <div>
                   <label for="c-lname" class="block text-xs font-bold uppercase tracking-wider mb-2">Efternamn *</label>
@@ -91,16 +91,16 @@ import Layout from "../layouts/Layout.astro";
               </div>
 
               <div>
-                <label for="c-subject" class="block text-xs font-bold uppercase tracking-wider mb-2">Amne</label>
+                <label for="c-subject" class="block text-xs font-bold uppercase tracking-wider mb-2">Ämne</label>
                 <select id="c-subject" name="subject"
                   class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors bg-white">
-                  <option value="">-- Valj amne --</option>
+                  <option value="">-- Välj ämne --</option>
                   <option value="custom-putter">Custom Putter</option>
                   <option value="logobollar">Titleist Logobollar</option>
-                  <option value="shop">Fragor om produkter</option>
+                  <option value="shop">Frågor om produkter</option>
                   <option value="putter-fitting">Putter Fitting</option>
                   <option value="trade-in">Scotty Trade-In</option>
-                  <option value="other">Ovrigt</option>
+                  <option value="other">Övrigt</option>
                 </select>
               </div>
 
@@ -108,8 +108,7 @@ import Layout from "../layouts/Layout.astro";
                 <label for="c-message" class="block text-xs font-bold uppercase tracking-wider mb-2">Meddelande *</label>
                 <textarea id="c-message" name="message" rows="6" required
                   class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors resize-y bg-white"
-                  placeholder="Skriv ditt meddelande har..."
-                ></textarea>
+                  placeholder="Skriv ditt meddelande här..."></textarea>
               </div>
 
               <button type="submit"

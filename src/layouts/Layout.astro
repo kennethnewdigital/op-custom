@@ -4,6 +4,8 @@ interface Props {
   description?: string;
 }
 
+import '../styles/global.css';
+
 const { title, description = "Premium golfutrustning & custom putters i Sverige. Scotty Cameron, TaylorMade & Titleist." } = Astro.props;
 const currentPath = Astro.url.pathname;
 
@@ -11,8 +13,8 @@ const navLinks = [
   { href: "/", label: "Hem" },
   { href: "/shop", label: "Shop" },
   { href: "/custom-putters", label: "Custom Putters" },
-  { href: "/titleist-logobollar", label: "Titleist Logobollar" },
-  { href: "/om-oss", label: "Om Oss" },
+  { href: "/titleist-logobollar", label: "Logobollar" },
+  { href: "/golftraning", label: "Golfträning" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -21,14 +23,16 @@ const categories = [
   { href: "/shop", label: "Putter Fitting" },
   { href: "/shop", label: "Premium Skaft" },
   { href: "/shop", label: "Golfklubbor" },
-  { href: "/shop", label: "Tillbehor" },
+  { href: "/shop", label: "Tillbehör" },
   { href: "/titleist-logobollar", label: "Titleist Logobollar" },
 ];
 
 const companyLinks = [
   { href: "/om-oss", label: "Om Oss" },
+  { href: "/nico-agnoletto", label: "Nico Agnoletto" },
   { href: "/kontakt", label: "Kontakt" },
-  { href: "/shop", label: "Shop" },
+  { href: "/golftraning", label: "Golfträning" },
+  { href: "/tidsbokning", label: "Boka tid" },
 ];
 ---
 
@@ -43,22 +47,18 @@ const companyLinks = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <style>
-      @import '../styles/global.css';
-    </style>
   </head>
   <body class="min-h-screen flex flex-col">
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-brand-grey-200" id="header">
       <div class="max-w-[1430px] mx-auto px-6 h-20 flex items-center justify-between">
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-2 shrink-0">
-          <span class="text-2xl font-black tracking-tight uppercase">OP</span>
-          <span class="text-sm font-semibold tracking-widest uppercase text-brand-grey-500">Custom</span>
+        <a href="/" class="flex items-center shrink-0">
+          <img src="/images/OP-CUSTOM.svg" alt="OP Custom" class="h-10" />
         </a>
 
         <!-- Desktop Nav -->
-        <nav class="hidden lg:flex items-center gap-8">
+        <nav class="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <a
               href={link.href}
@@ -114,9 +114,8 @@ const companyLinks = [
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <!-- Brand -->
           <div>
-            <a href="/" class="flex items-center gap-2 mb-6">
-              <span class="text-2xl font-black tracking-tight uppercase">OP</span>
-              <span class="text-sm font-semibold tracking-widest uppercase text-brand-grey-500">Custom</span>
+            <a href="/" class="flex items-center mb-6">
+              <img src="/images/OP-CUSTOM.svg" alt="OP Custom" class="h-10" />
             </a>
             <p class="text-sm text-brand-grey-500 leading-relaxed">
               Premium golfutrustning och custom putters. Vi specialiserar oss på Scotty Cameron, TaylorMade och Titleist.
@@ -137,9 +136,9 @@ const companyLinks = [
             </ul>
           </div>
 
-          <!-- Foretaget -->
+          <!-- Företaget -->
           <div>
-            <h3 class="text-sm font-bold uppercase tracking-wider mb-6 pb-3 border-b border-brand-grey-300">Foretaget</h3>
+            <h3 class="text-sm font-bold uppercase tracking-wider mb-6 pb-3 border-b border-brand-grey-300">Företaget</h3>
             <ul class="space-y-3">
               {companyLinks.map((link) => (
                 <li>
@@ -180,7 +179,7 @@ const companyLinks = [
       <!-- Sub Footer -->
       <div class="border-t border-brand-grey-300 bg-brand-grey-200/50">
         <div class="max-w-[1430px] mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p class="text-xs text-brand-grey-500">&copy; {new Date().getFullYear()} OnePutt Custom. Alla rattigheter forbehallna.</p>
+          <p class="text-xs text-brand-grey-500">&copy; {new Date().getFullYear()} OnePutt Custom. Alla rättigheter förbehållna.</p>
           <p class="text-xs text-brand-grey-400">Premium Golf Equipment &mdash; Sverige</p>
         </div>
       </div>

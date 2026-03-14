@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const credentials = [
+  "PGA-certifierad golfinstruktör",
+  "Internationell tävlingserfarenhet",
+  "Specialist på svingteknik och kortspel",
+  "Erfarenhet av alla spelarnivåer",
+  "Videoanalys och modern teknik",
+  "Skräddarsydda träningsplaner",
+];
+
+const philosophy = [
+  {
+    title: "Individanpassat",
+    desc: "Ingen golfare är den andra lik. Varje lektion utgår från dina unika styrkor, svagheter och mål. Nico bygger en plan som passar just dig.",
+  },
+  {
+    title: "Grunderna först",
+    desc: "Oavsett nivå börjar vi alltid med grunderna — grepp, hållning och alignment. En stabil grund ger långsiktiga resultat.",
+  },
+  {
+    title: "Mätbar utveckling",
+    desc: "Med videoanalys och regelbundna uppföljningar ser du konkreta framsteg. Vi sätter upp mål och följer din utveckling över tid.",
+  },
+  {
+    title: "Glädje i spelet",
+    desc: "Golf ska vara roligt. Nicos positiva och engagerande undervisningsstil gör att du trivs och vill fortsätta utvecklas.",
+  },
+];
+---
+
+<Layout title="Nico Agnoletto — PGA Instruktör" description="Möt Nico Agnoletto, PGA-certifierad golfinstruktör hos OP Custom. Professionell träning för alla nivåer.">
+
+  <!-- Hero -->
+  <section class="relative bg-brand-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-20"></div>
+    <div class="relative z-20 max-w-[1430px] mx-auto px-6 py-28 md:py-40">
+      <div class="max-w-2xl">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">PGA Instruktör</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[0.95] mb-6">
+          Nico<br/><span class="text-brand-red">Agnoletto</span>
+        </h1>
+        <p class="text-lg text-white/70 max-w-lg leading-relaxed">
+          PGA-certifierad golfinstruktör med passion för att hjälpa spelare på alla nivåer att nå sin fulla potential.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bio Section -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+        <!-- Photo -->
+        <div class="lg:col-span-2">
+          <div class="aspect-[3/4] bg-brand-grey-200 rounded-2xl overflow-hidden sticky top-28">
+            <div class="w-full h-full flex items-center justify-center bg-brand-grey-300">
+              <div class="text-center">
+                <svg class="w-32 h-32 mx-auto text-brand-grey-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                <p class="text-brand-grey-400 text-sm mt-2">Foto kommer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="lg:col-span-3">
+          <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Om Nico</p>
+          <h2 class="text-3xl md:text-4xl font-black uppercase mb-8">Passion för golf & undervisning</h2>
+
+          <div class="prose-custom space-y-5 text-brand-grey-600 leading-relaxed">
+            <p>
+              Nico Agnoletto är en PGA-certifierad golfinstruktör som brinner för att hjälpa golfare att utvecklas. Med en kombination av teknisk expertis och en varm, pedagogisk approach har han hjälpt hundratals spelare att förbättra sitt spel.
+            </p>
+            <p>
+              Uppvuxen med golf har Nico en djup förståelse för spelets alla dimensioner — från den perfekta svingen till det mentala spelet som skiljer bra rundor från fantastiska. Hans internationella erfarenhet ger honom ett brett perspektiv på moderna undervisningsmetoder.
+            </p>
+            <p>
+              Som instruktör hos OP Custom erbjuder Nico allt från privatlektioner och kurser till on-course lektioner där du lär dig kurshantering och strategi i verkliga spelförhållanden.
+            </p>
+            <p>
+              Nicos mål är enkelt: att göra dig till en bättre och gladare golfare. Oavsett om du vill sänka ditt handikapp med tio slag eller bara lära dig slå din första drive — Nico har rätt verktyg och kunskap för att guida dig dit.
+            </p>
+          </div>
+
+          <!-- Credentials -->
+          <div class="mt-12 p-8 bg-brand-grey-50 rounded-2xl border border-brand-grey-200">
+            <h3 class="text-sm font-black uppercase tracking-wider mb-6">Meriter & kvalifikationer</h3>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {credentials.map((c) => (
+                <li class="flex items-start gap-3 text-sm text-brand-grey-600">
+                  <svg class="w-5 h-5 text-brand-red shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="py-20 md:py-28 bg-brand-grey-50">
+    <div class="max-w-[1430px] mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-3">Filosofi</p>
+        <h2 class="text-3xl md:text-4xl font-black uppercase">Nicos approach</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {philosophy.map((p, i) => (
+          <div class="bg-white border border-brand-grey-200 rounded-xl p-8">
+            <span class="text-brand-red font-black text-4xl opacity-20">0{i + 1}</span>
+            <h3 class="text-lg font-black uppercase tracking-wide mt-2 mb-3">{p.title}</h3>
+            <p class="text-sm text-brand-grey-500 leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 md:py-28 bg-brand-black text-white">
+    <div class="max-w-[1430px] mx-auto px-6 text-center">
+      <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Redo?</p>
+      <h2 class="text-3xl md:text-4xl font-black uppercase mb-6">Boka en lektion med Nico</h2>
+      <p class="text-white/60 max-w-lg mx-auto mb-8">
+        Ta första steget mot ett bättre golfspel. Boka en privatlektion eller kurs idag.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="/tidsbokning" class="inline-flex items-center gap-2 px-10 py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors">
+          Boka tid
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="/golftraning" class="inline-flex items-center gap-2 px-10 py-4 border-2 border-white/30 text-white text-sm font-bold uppercase tracking-wider rounded-full hover:border-white transition-colors">
+          Se alla lektioner
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

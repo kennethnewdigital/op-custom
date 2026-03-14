@@ -1,0 +1,328 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Generate next 14 days for booking
+const today = new Date();
+const days = Array.from({ length: 14 }, (_, i) => {
+  const d = new Date(today);
+  d.setDate(d.getDate() + i);
+  return d;
+});
+
+const dayNames = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"];
+const monthNames = ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+
+const timeSlots = [
+  "08:00", "09:00", "10:00", "11:00",
+  "13:00", "14:00", "15:00", "16:00", "17:00"
+];
+
+const lessonTypes = [
+  { value: "private-60", label: "Privatlektion 60 min — 1 200 kr" },
+  { value: "private-30", label: "Halvlektion 30 min — 700 kr" },
+  { value: "oncourse", label: "On-Course Lektion 90 min — 1 800 kr" },
+  { value: "beginner", label: "Nybörjarkurs 90 min — 2 400 kr" },
+];
+---
+
+<Layout title="Boka tid" description="Boka golflektion med PGA-instruktör Nico Agnoletto. Välj dag, tid och lektionstyp som passar dig.">
+
+  <!-- Hero -->
+  <section class="relative bg-brand-black text-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent z-10"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1592919505780-303950717480?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-20"></div>
+    <div class="relative z-20 max-w-[1430px] mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-2xl">
+        <p class="text-brand-red font-bold text-sm tracking-[0.3em] uppercase mb-4">Tidsbokning</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[0.95] mb-6">
+          Boka din <span class="text-brand-red">lektion</span>
+        </h1>
+        <p class="text-lg text-white/70 max-w-lg leading-relaxed">
+          Välj datum, tid och lektionstyp nedan. Vi bekräftar din bokning via e-post.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking System -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-[900px] mx-auto px-6">
+
+      <!-- Step 1: Select Date -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-8 bg-brand-red text-white text-sm font-bold rounded-full flex items-center justify-center">1</span>
+          <h2 class="text-lg font-black uppercase tracking-wide">Välj datum</h2>
+        </div>
+        <div class="grid grid-cols-7 gap-2" id="date-grid">
+          {days.map((d, i) => (
+            <button
+              type="button"
+              class="date-btn group flex flex-col items-center p-3 rounded-xl border border-brand-grey-200 hover:border-brand-red transition-all cursor-pointer text-center"
+              data-date={d.toISOString().split('T')[0]}
+              data-index={i}
+            >
+              <span class="text-[10px] font-bold uppercase tracking-wider text-brand-grey-400 group-hover:text-brand-red">{dayNames[d.getDay()]}</span>
+              <span class="text-lg font-black mt-0.5">{d.getDate()}</span>
+              <span class="text-[10px] text-brand-grey-400">{monthNames[d.getMonth()]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 2: Select Time -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-8 bg-brand-red text-white text-sm font-bold rounded-full flex items-center justify-center">2</span>
+          <h2 class="text-lg font-black uppercase tracking-wide">Välj tid</h2>
+        </div>
+        <div class="grid grid-cols-3 sm:grid-cols-5 gap-3" id="time-grid">
+          {timeSlots.map((t) => (
+            <button
+              type="button"
+              class="time-btn py-3 px-4 rounded-xl border border-brand-grey-200 text-sm font-bold hover:border-brand-red transition-all cursor-pointer"
+              data-time={t}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+        <div id="no-date-msg" class="text-sm text-brand-grey-400 mt-3 hidden">
+          Välj ett datum först för att se tillgängliga tider.
+        </div>
+      </div>
+
+      <!-- Step 3: Select Lesson Type -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-8 bg-brand-red text-white text-sm font-bold rounded-full flex items-center justify-center">3</span>
+          <h2 class="text-lg font-black uppercase tracking-wide">Välj lektion</h2>
+        </div>
+        <div class="space-y-3" id="lesson-grid">
+          {lessonTypes.map((l) => (
+            <button
+              type="button"
+              class="lesson-btn w-full text-left py-4 px-6 rounded-xl border border-brand-grey-200 text-sm font-semibold hover:border-brand-red transition-all cursor-pointer"
+              data-lesson={l.value}
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step 4: Contact Info -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-8 bg-brand-red text-white text-sm font-bold rounded-full flex items-center justify-center">4</span>
+          <h2 class="text-lg font-black uppercase tracking-wide">Dina uppgifter</h2>
+        </div>
+
+        <form id="booking-form" class="space-y-4" name="booking" method="POST">
+          <input type="hidden" id="selected-date" name="date" />
+          <input type="hidden" id="selected-time" name="time" />
+          <input type="hidden" id="selected-lesson" name="lesson_type" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="b-fname" class="block text-xs font-bold uppercase tracking-wider mb-2">Förnamn *</label>
+              <input type="text" id="b-fname" name="firstname" required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="Förnamn" />
+            </div>
+            <div>
+              <label for="b-lname" class="block text-xs font-bold uppercase tracking-wider mb-2">Efternamn *</label>
+              <input type="text" id="b-lname" name="lastname" required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="Efternamn" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="b-email" class="block text-xs font-bold uppercase tracking-wider mb-2">E-post *</label>
+              <input type="email" id="b-email" name="email" required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="din@epost.se" />
+            </div>
+            <div>
+              <label for="b-phone" class="block text-xs font-bold uppercase tracking-wider mb-2">Telefon *</label>
+              <input type="tel" id="b-phone" name="phone" required
+                class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors"
+                placeholder="070-XXX XX XX" />
+            </div>
+          </div>
+
+          <div>
+            <label for="b-msg" class="block text-xs font-bold uppercase tracking-wider mb-2">Meddelande (valfritt)</label>
+            <textarea id="b-msg" name="message" rows="3"
+              class="w-full px-5 py-4 border border-brand-grey-300 rounded-xl text-sm focus:outline-none focus:border-brand-red transition-colors resize-y"
+              placeholder="Berätta om din golfnivå, mål eller eventuella önskemål..."></textarea>
+          </div>
+
+          <!-- Summary -->
+          <div id="booking-summary" class="hidden p-6 bg-brand-grey-50 rounded-xl border border-brand-grey-200">
+            <h3 class="text-xs font-bold uppercase tracking-wider mb-3">Din bokning</h3>
+            <div class="flex flex-wrap gap-4 text-sm">
+              <span id="summary-date" class="bg-white px-3 py-1.5 rounded-lg border border-brand-grey-200 font-semibold"></span>
+              <span id="summary-time" class="bg-white px-3 py-1.5 rounded-lg border border-brand-grey-200 font-semibold"></span>
+              <span id="summary-lesson" class="bg-white px-3 py-1.5 rounded-lg border border-brand-grey-200 font-semibold"></span>
+            </div>
+          </div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full py-4 bg-brand-red text-white text-sm font-bold uppercase tracking-wider rounded-full hover:bg-brand-red-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled>
+            Bekräfta bokning
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="py-16 bg-brand-grey-50 border-t border-brand-grey-200">
+    <div class="max-w-[900px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider mb-2">Avbokning</h3>
+          <p class="text-sm text-brand-grey-500">Kostnadsfri avbokning senast 24 timmar innan lektionen.</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider mb-2">Bekräftelse</h3>
+          <p class="text-sm text-brand-grey-500">Du får en bekräftelse via e-post inom 24 timmar efter bokning.</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider mb-2">Frågor?</h3>
+          <p class="text-sm text-brand-grey-500">Kontakta oss på <a href="mailto:hello@op-custom.com" class="text-brand-red hover:text-brand-red-dark">hello@op-custom.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  let selectedDate: string | null = null;
+  let selectedTime: string | null = null;
+  let selectedLesson: string | null = null;
+
+  // Simulated booked slots (in production, fetch from API)
+  const bookedSlots: Record<string, string[]> = {};
+
+  // Randomly mark some slots as booked for demo
+  const dateButtons = document.querySelectorAll('.date-btn') as NodeListOf<HTMLButtonElement>;
+  dateButtons.forEach((btn) => {
+    const date = btn.dataset.date!;
+    const booked: string[] = [];
+    // Randomly book 2-4 slots per day
+    const numBooked = 2 + Math.floor(Math.random() * 3);
+    const allTimes = ["08:00", "09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+    for (let i = 0; i < numBooked; i++) {
+      const idx = Math.floor(Math.random() * allTimes.length);
+      booked.push(allTimes.splice(idx, 1)[0]);
+    }
+    bookedSlots[date] = booked;
+  });
+
+  function updateSummary() {
+    const summary = document.getElementById('booking-summary')!;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+    if (selectedDate && selectedTime && selectedLesson) {
+      summary.classList.remove('hidden');
+      document.getElementById('summary-date')!.textContent = selectedDate;
+      document.getElementById('summary-time')!.textContent = selectedTime;
+      const lessonBtn = document.querySelector(`.lesson-btn[data-lesson="${selectedLesson}"]`) as HTMLButtonElement;
+      document.getElementById('summary-lesson')!.textContent = lessonBtn?.textContent?.trim() || selectedLesson;
+      submitBtn.disabled = false;
+    } else {
+      summary.classList.add('hidden');
+      submitBtn.disabled = true;
+    }
+
+    (document.getElementById('selected-date') as HTMLInputElement).value = selectedDate || '';
+    (document.getElementById('selected-time') as HTMLInputElement).value = selectedTime || '';
+    (document.getElementById('selected-lesson') as HTMLInputElement).value = selectedLesson || '';
+  }
+
+  // Date selection
+  dateButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      dateButtons.forEach(b => {
+        b.classList.remove('border-brand-red', 'bg-brand-red', 'text-white');
+        b.classList.add('border-brand-grey-200');
+      });
+      btn.classList.remove('border-brand-grey-200');
+      btn.classList.add('border-brand-red', 'bg-brand-red', 'text-white');
+
+      selectedDate = btn.dataset.date!;
+      selectedTime = null; // Reset time when date changes
+
+      // Update time slots
+      const timeButtons = document.querySelectorAll('.time-btn') as NodeListOf<HTMLButtonElement>;
+      const booked = bookedSlots[selectedDate] || [];
+
+      timeButtons.forEach(tb => {
+        tb.classList.remove('border-brand-red', 'bg-brand-red', 'text-white', 'opacity-40', 'cursor-not-allowed', 'line-through');
+        tb.classList.add('border-brand-grey-200');
+        tb.disabled = false;
+
+        if (booked.includes(tb.dataset.time!)) {
+          tb.classList.add('opacity-40', 'cursor-not-allowed', 'line-through');
+          tb.classList.remove('hover:border-brand-red');
+          tb.disabled = true;
+        }
+      });
+
+      updateSummary();
+    });
+  });
+
+  // Time selection
+  const timeButtons = document.querySelectorAll('.time-btn') as NodeListOf<HTMLButtonElement>;
+  timeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+
+      timeButtons.forEach(b => {
+        if (!b.disabled) {
+          b.classList.remove('border-brand-red', 'bg-brand-red', 'text-white');
+          b.classList.add('border-brand-grey-200');
+        }
+      });
+      btn.classList.remove('border-brand-grey-200');
+      btn.classList.add('border-brand-red', 'bg-brand-red', 'text-white');
+
+      selectedTime = btn.dataset.time!;
+      updateSummary();
+    });
+  });
+
+  // Lesson selection
+  const lessonButtons = document.querySelectorAll('.lesson-btn') as NodeListOf<HTMLButtonElement>;
+  lessonButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      lessonButtons.forEach(b => {
+        b.classList.remove('border-brand-red', 'bg-brand-red/5');
+        b.classList.add('border-brand-grey-200');
+      });
+      btn.classList.remove('border-brand-grey-200');
+      btn.classList.add('border-brand-red', 'bg-brand-red/5');
+
+      selectedLesson = btn.dataset.lesson!;
+      updateSummary();
+    });
+  });
+
+  // Form submit
+  document.getElementById('booking-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!selectedDate || !selectedTime || !selectedLesson) {
+      alert('Vänligen välj datum, tid och lektionstyp.');
+      return;
+    }
+    alert(`Tack för din bokning!\n\nDatum: ${selectedDate}\nTid: ${selectedTime}\n\nVi bekräftar via e-post inom kort.`);
+  });
+</script>
