@@ -87,30 +87,49 @@ import { products } from "../data/products";
   const filterBtns = document.querySelectorAll('.filter-btn');
   const productCards = document.querySelectorAll('.product-card');
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const filter = (btn as HTMLElement).dataset.filter;
-
-      filterBtns.forEach(b => {
+  function applyFilter(filter: string) {
+    filterBtns.forEach(b => {
+      const btnFilter = (b as HTMLElement).dataset.filter;
+      if (btnFilter === filter) {
+        b.classList.add('bg-brand-black', 'text-white');
+        b.classList.remove('border', 'border-brand-grey-300', 'text-brand-grey-500');
+      } else {
         b.classList.remove('bg-brand-black', 'text-white');
         b.classList.add('border', 'border-brand-grey-300', 'text-brand-grey-500');
-      });
-      btn.classList.add('bg-brand-black', 'text-white');
-      btn.classList.remove('border', 'border-brand-grey-300', 'text-brand-grey-500');
+      }
+    });
 
-      productCards.forEach((card) => {
-        const el = card as HTMLElement;
-        const category = el.dataset.category;
-        const badge = el.dataset.badge;
+    productCards.forEach((card) => {
+      const el = card as HTMLElement;
+      const category = el.dataset.category;
+      const badge = el.dataset.badge;
 
-        if (filter === 'all') {
-          el.style.display = '';
-        } else if (filter === 'REA') {
-          el.style.display = badge === 'REA' ? '' : 'none';
-        } else {
-          el.style.display = category === filter ? '' : 'none';
-        }
-      });
+      if (filter === 'all') {
+        el.style.display = '';
+      } else if (filter === 'REA') {
+        el.style.display = badge === 'REA' ? '' : 'none';
+      } else {
+        el.style.display = category === filter ? '' : 'none';
+      }
+    });
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter || 'all';
+      window.location.hash = filter === 'all' ? '' : filter.toLowerCase();
+      applyFilter(filter);
     });
   });
+
+  // Apply filter from URL hash on page load
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  const hashMap: Record<string, string> = {
+    'putters': 'Putters',
+    'drivers': 'Drivers',
+    'rea': 'REA',
+  };
+  if (hash && hashMap[hash]) {
+    applyFilter(hashMap[hash]);
+  }
 </script>
